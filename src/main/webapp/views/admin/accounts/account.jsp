@@ -95,7 +95,7 @@
 				<div class="bg-light p-3">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb mb-0">
-							<li class="breadcrumb-item"><a href="#">Admin</a></li>
+							<li class="breadcrumb-item"><a href="/ASM_JAVA5/admin">Admin</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Accounts</li>
 						</ol>
 					</nav>
@@ -191,13 +191,75 @@
 										<td>${ acc.fullname }</td>
 										<td>${ acc.username }</td>
 										<td>${ acc.email }</td>
-										<td><img src="${ acc.avatar }" /></td>
+										<td class="text-center"><img src="${ acc.avatar }"
+											alt="${ acc.username }" width="50" height="50" /></td>
 										<td>${ acc.actived == 0 ? "In-Active" : "Active" }</td>
 										<td>${ acc.admin == 1 ? "Admin" : "Member" }</td>
-										<td class="text-center">
-											<button class="btn btn-primary">
+										<td>
+											<button class="btn btn-primary" data-bs-toggle="modal"
+												data-bs-target="#modalUpdate_${acc.id }">
 												<i class="fa-solid fa-pen-to-square"></i>
 											</button>
+											 <!-- Modal update -->
+											<div class="modal fade" id="modalUpdate_${acc.id}"
+												data-bs-backdrop="static" data-bs-keyboard="false"
+												tabindex="-1" aria-labelledby="staticBackdropLabel"
+												aria-hidden="true">
+												<div class="modal-dialog">
+													<div class="modal-content">
+														<div class="modal-header bg-info">
+															<h5 class="modal-title text-white"
+																id="staticBackdropLabel">Update a new account </h5>
+															<button type="button" class="btn" data-bs-dismiss="modal"
+																aria-label="Close">
+																<i class="fa-solid fa-xmark fs-5 text-white"></i>
+															</button>
+														</div>
+														<div class="modal-body">
+											<form:form action="/ASM_JAVA5/admin/accounts/update/${ acc.id }"
+												method="post" modelAttribute="account">
+												<div>
+													<label>Full name</label>
+													<form:input path="fullname" class="form-control" value="${ acc.fullname }" />
+												</div>
+												<div>
+													<label>Email</label>
+													<form:input path="email" type="email" class="form-control" value="${ acc.email }" />
+												</div>
+												<div>
+													<label>User name</label>
+													<form:input path="username" class="form-control" value="${ acc.username }" />
+												</div>
+												<div>
+													<label>Photo</label>
+													<form:input path="avatar" class="form-control" value="${ acc.avatar }"/>
+												</div>
+												<div>
+													<label>Admin</label>
+													<form:select path="admin" class="form-select" itemValue="${ acc.admin }">
+														<form:option value="0">Member</form:option>
+														<form:option value="1">Admin</form:option>
+													</form:select>
+												</div>
+												<button class="btn btn-primary w-100 mt-3" id="liveToastBtn">Add</button>
+												<div class="position-fixed top-0 end-0 p-5"
+													style="z-index: 11">
+													<div style="background-color: #2ecc71" id="liveToast"
+														class="toast align-items-center text-white border-0"
+														role="alert" aria-live="assertive" aria-atomic="true">
+														<div class="d-flex">
+															<div class="toast-body">Successful !</div>
+															<button type="button"
+																class="btn-close btn-close-white me-2 m-auto"
+																data-bs-dismiss="toast" aria-label="Close"></button>
+														</div>
+													</div>
+												</div>
+											</form:form>
+														</div>
+													</div>
+												</div>
+											</div>
 										</td>
 										<td class="text-center">
 											<button class="btn btn-danger" data-bs-toggle="modal"
@@ -212,14 +274,14 @@
 													<div class="modal-content">
 														<div class="modal-header bg-danger">
 															<h5 class="modal-title text-white"
-																id="staticBackdropLabel">Delete a new account !</h5>
+																id="staticBackdropLabel">Delete a account !</h5>
 															<button type="button" class="btn" data-bs-dismiss="modal"
 																aria-label="Close">
 																<i class="fa-solid fa-xmark fs-5 text-white"></i>
 															</button>
 														</div>
 														<div class="modal-body" style="background-color: #fff2df">
-															<p>Warming : You are trying a account. This account
+															<p>Warning : You are trying a account. This account
 																will be permanently deleted !</p>
 															<a role="button"
 																href="/ASM_JAVA5/admin/accounts/delete/${ acc.id }"

@@ -22,17 +22,7 @@ public class AccountController {
 	@Autowired
 	private AccountRepository accountRepo;
 
-	@GetMapping("admin/accounts/index")
-	public String index(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "8") int size,
-			@ModelAttribute("account") AccountModel account) {
-		model.addAttribute("page", page);
-		Pageable pageable = PageRequest.of(page, size);
-		Page<Account> p = this.accountRepo.findAll(pageable);
-		model.addAttribute("data", p);
-		return "admin/accounts/account";
-	}
-
+	// create
 	@PostMapping("admin/accounts/store")
 	public String store(AccountModel model) {
 		Account acc = new Account();
@@ -46,6 +36,31 @@ public class AccountController {
 		return "redirect:/admin/accounts/index";
 	}
 
+	// read
+	@GetMapping("admin/accounts/index")
+	public String index(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
+			@RequestParam(name = "size", defaultValue = "6") int size,
+			@ModelAttribute("account") AccountModel account) {
+		model.addAttribute("page", page);
+		Pageable pageable = PageRequest.of(page, size);
+		Page<Account> p = this.accountRepo.findAll(pageable);
+		model.addAttribute("data", p);
+		return "admin/accounts/account";
+	}
+
+	// update
+	@PostMapping("admin/accounts/update/{id}")
+	public String update(@PathVariable("id") Account acc, @ModelAttribute("account") AccountModel model) {
+		acc.setFullname(model.getFullname());
+		acc.setEmail(model.getEmail());
+		acc.setUsername(model.getUsername());
+		acc.setAvatar(model.getAvatar());
+		acc.setAdmin(model.getAdmin());
+		this.accountRepo.save(acc);
+		return "redirect:/admin/accounts/index";
+	}
+
+	// delete
 	@GetMapping("admin/accounts/delete/{id}")
 	public String delete(@PathVariable("id") Account account) {
 		this.accountRepo.delete(account);

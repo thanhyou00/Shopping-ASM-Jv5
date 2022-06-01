@@ -37,10 +37,12 @@ public class Account implements Serializable {
 	private String password;
 	@Column(nullable = false, length = 255)
 	private String avatar;
+	@Column(nullable = false, length = 255, unique = true)
+	private String email;
 	@Column(nullable = false, precision = 10)
-	private int isAdmin;
+	private int admin;
 	@Column(nullable = false, precision = 10)
-	private int isActived;
+	private int actived;
 	@OneToMany(mappedBy = "account")
 	private Set<Payment> payment;
 	@OneToMany(mappedBy = "account")

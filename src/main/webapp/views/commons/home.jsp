@@ -6,15 +6,11 @@
 <meta charset="UTF-8">
 <link rel="icon" href="./public/images/logo-ico-small.svg" />
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
-	integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
-	crossorigin="anonymous" referrerpolicy="no-referrer" />
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
 <!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-	rel="stylesheet"
-	integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-	crossorigin="anonymous">
+	rel="stylesheet">
 <title>Shoes shop</title>
 </head>
 <style>
@@ -52,7 +48,7 @@ html *::-webkit-scrollbar-track {
 <body>
 	<div class="container-fluid">
 		<nav class="navbar navbar-expand-lg row shadow-sm fixed-top px-3"
-			style="background-color: #fd7e14">
+			style="background-color: #0a3d62">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#"> <img alt="logo"
 					src="./public/images/logo-ico.svg" width="80" height="80">
@@ -100,8 +96,7 @@ html *::-webkit-scrollbar-track {
 								style="top: auto; left: auto;">
 								<li><a class="dropdown-item" href="#">Action</a></li>
 								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><a class="dropdown-item" href="#">Something else
-										here</a></li>
+								<li><a class="dropdown-item" href="./admin">Admin</a></li>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="#"> <i
@@ -375,37 +370,33 @@ html *::-webkit-scrollbar-track {
 			</div>
 		</div>
 		<%-- Footer --%>
-		<div class="row mt-5 p-4" style="background-color: #fd7e14">
+		<div class="row mt-5 p-4" style="background-color: #0a3d62">
 			<div class="col-4 text-center">
 				<img alt="logo" src="./public/images/logo-ico-small.svg">
-				<p>FPT Polytechnic Shopping</p>
+				<p style="color: #dcdde1">FPT Polytechnic Shopping</p>
 			</div>
 			<div class="col-4">
 				<p class="text-white fw-bold">INFORMATION</p>
-				<p>About Us</p>
-				<p>Delivery Information</p>
-				<p>Privacy Policy</p>
-				<p>Terms & Conditions</p>
-				<p>Returns</p>
-				<p>Gift Certificates</p>
+				<p style="color: #dcdde1">About Us</p>
+				<p style="color: #dcdde1">Delivery Information</p>
+				<p style="color: #dcdde1">Privacy Policy</p>
+				<p style="color: #dcdde1">Terms and Conditions</p>
+				<p style="color: #dcdde1">Returns</p>
+				<p style="color: #dcdde1">Gift Certificates</p>
 			</div>
 			<div class="col-4">
 				<p class="text-white fw-bold">CONTACT US</p>
 				<form action="">
-					<label for="exampleFormControlInput1" class="form-label">Email
+					<label for="exampleFormControlInput1" class="form-label" style="color: #dcdde1">Email
 						address</label> <input type="email" class="form-control"
 						id="exampleFormControlInput1" placeholder="name@example.com">
 					<button type="button" class="btn btn-primary w-100 mt-2">Send</button>
 				</form>
 			</div>
 			<hr>
-			<p class="text-center text-white fw-bold">Made by trucnvph17923
-				^_^</p>
+			<p class="text-center text-white fw-bold">Made by trucnvph17923</p>
 		</div>
 	</div>
-	<script
-		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-		integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-		crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

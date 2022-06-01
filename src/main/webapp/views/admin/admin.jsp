@@ -20,7 +20,8 @@
 				style="background-color: #0a3d62; height: 100vh">
 				<div class="d-flex justify-content-center">
 					<a class="navbar-brand" href="#"> <img alt="logo"
-						src="/ASM_JAVA5/public/images/logo-ico.svg" width="100" height="100">
+						src="/ASM_JAVA5/public/images/logo-ico.svg" width="100"
+						height="100">
 					</a>
 				</div>
 				<hr>
@@ -33,10 +34,14 @@
 						class="list-group-item list-group-item-action border-0"
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-user fs-6 px-1"></i></span> Accounts
-					</a> <a href="#"
+					</a> <a href="/ASM_JAVA5/admin/products/index"
 						class="list-group-item list-group-item-action border-0 "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-cart-shopping fs-6 px-1"></i></span> Products
+					</a> <a href="/ASM_JAVA5/admin/categories/index"
+						class="list-group-item list-group-item-action border-0 "
+						style="background-color: #0a3d62; color: #dcdde1"> <span><i
+							class="fa-solid fa-share-nodes fs-6 px-1"></i></span> Categories
 					</a> <a href="#"
 						class="list-group-item list-group-item-action border-0  "
 						style="background-color: #0a3d62; color: #dcdde1"> <span>
@@ -65,7 +70,8 @@
 				</div>
 			</div>
 			<div class="col-10 px-0">
-				<nav class="navbar navbar-expand-lg shadow-sm" style="background-color: #ffffff">
+				<nav class="navbar navbar-expand-lg shadow-sm"
+					style="background-color: #ffffff">
 					<div class="container-fluid">
 						<a class="navbar-brand" href="#">Navbar w/ text</a>
 						<button class="navbar-toggler" type="button"

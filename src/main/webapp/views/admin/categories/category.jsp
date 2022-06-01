@@ -13,7 +13,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<title>Account</title>
+<title>Category</title>
 </head>
 <body>
 	<div class="container-fluid">
@@ -29,7 +29,8 @@
 				<hr>
 				<div class="list-group">
 					<p class="text-secondary fw-bold">Components</p>
-					<a href="/ASM_JAVA5/admin" class="list-group-item list-group-item-action border-0"
+					<a href="/ASM_JAVA5/admin"
+						class="list-group-item list-group-item-action border-0"
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-gauge-high fs-6 px-1"></i></span> Dash board
 					</a> <a href="/ASM_JAVA5/admin/accounts/index"
@@ -117,39 +118,20 @@
 									<div class="modal-content">
 										<div class="modal-header">
 											<h5 class="modal-title" id="staticBackdropLabel">Add a
-												new account</h5>
+												new category</h5>
 											<button type="button" class="btn-close"
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form:form action="/ASM_JAVA5/admin/accounts/store"
-												method="post" modelAttribute="account">
+											<form:form action="/ASM_JAVA5/admin/categories/store"
+												method="post" modelAttribute="category">
 												<div>
-													<label>Full name</label>
-													<form:input path="fullname" class="form-control" />
+													<label>Name</label>
+													<form:input path="name" class="form-control" />
 												</div>
 												<div>
-													<label>Email</label>
-													<form:input path="email" type="email" class="form-control" />
-												</div>
-												<div>
-													<label>User name</label>
-													<form:input path="username" class="form-control" />
-												</div>
-												<div>
-													<label>Password</label>
-													<form:password path="password" class="form-control" />
-												</div>
-												<div>
-													<label>Photo</label>
-													<form:input path="avatar" class="form-control" />
-												</div>
-												<div>
-													<label>Admin</label>
-													<form:select path="admin" class="form-select">
-														<form:option value="0">Member</form:option>
-														<form:option value="1">Admin</form:option>
-													</form:select>
+													<label>Descriptions</label>
+													<form:input path="descriptions" class="form-control" />
 												</div>
 												<button class="btn btn-primary w-100 mt-3" id="liveToastBtn">Add</button>
 												<div class="position-fixed top-0 end-0 p-5"
@@ -179,32 +161,23 @@
 							<thead>
 								<tr>
 									<th>ID</th>
-									<th>Full name</th>
-									<th>User name</th>
-									<th>Email</th>
-									<th>Photo</th>
-									<th>Activated</th>
-									<th>Role</th>
+									<th>Name</th>
+									<th>Descriptions</th>
 									<th colspan="2">Action</th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${ data.content }" var="acc">
+								<c:forEach items="${ data.content }" var="cate">
 									<tr>
-										<td>${ acc.id }</td>
-										<td>${ acc.fullname }</td>
-										<td>${ acc.username }</td>
-										<td>${ acc.email }</td>
-										<td class="text-center"><img src="${ acc.avatar }"
-											alt="${ acc.username }" width="50" height="50" /></td>
-										<td>${ acc.actived == 0 ? "In-Active" : "Active" }</td>
-										<td>${ acc.admin == 1 ? "Admin" : "Member" }</td>
+										<td>${ cate.id }</td>
+										<td>${ cate.name }</td>
+										<td>${ cate.descriptions }</td>
 										<td>
 											<button class="btn btn-primary" data-bs-toggle="modal"
-												data-bs-target="#modalUpdate_${acc.id }">
+												data-bs-target="#modalUpdate_${cate.id }">
 												<i class="fa-solid fa-pen-to-square"></i>
 											</button> <!-- Modal update -->
-											<div class="modal fade" id="modalUpdate_${acc.id}"
+											<div class="modal fade" id="modalUpdate_${cate.id}"
 												data-bs-backdrop="static" data-bs-keyboard="false"
 												tabindex="-1" aria-labelledby="staticBackdropLabel"
 												aria-hidden="true">
@@ -212,7 +185,7 @@
 													<div class="modal-content">
 														<div class="modal-header bg-info">
 															<h5 class="modal-title text-white"
-																id="staticBackdropLabel">Update a new account</h5>
+																id="staticBackdropLabel">Update a new category</h5>
 															<button type="button" class="btn" data-bs-dismiss="modal"
 																aria-label="Close">
 																<i class="fa-solid fa-xmark fs-5 text-white"></i>
@@ -220,35 +193,15 @@
 														</div>
 														<div class="modal-body">
 															<form:form
-																action="/ASM_JAVA5/admin/accounts/update/${ acc.id }"
-																method="post" modelAttribute="account">
+																action="/ASM_JAVA5/admin/categories/update/${ cate.id }"
+																method="post" modelAttribute="category">
 																<div>
-																	<label>Full name</label>
-																	<form:input path="fullname" class="form-control"
-																		value="${ acc.fullname }" />
+																	<label>Name</label>
+																	<form:input path="name" class="form-control" value="${ cate.name }" />
 																</div>
 																<div>
-																	<label>Email</label>
-																	<form:input path="email" type="email"
-																		class="form-control" value="${ acc.email }" />
-																</div>
-																<div>
-																	<label>User name</label>
-																	<form:input path="username" class="form-control"
-																		value="${ acc.username }" />
-																</div>
-																<div>
-																	<label>Photo</label>
-																	<form:input path="avatar" class="form-control"
-																		value="${ acc.avatar }" />
-																</div>
-																<div>
-																	<label>Admin</label>
-																	<form:select path="admin" class="form-select"
-																		itemValue="${ acc.admin }">
-																		<form:option value="0">Member</form:option>
-																		<form:option value="1">Admin</form:option>
-																	</form:select>
+																	<label>Descriptions</label>
+																	<form:input path="descriptions" class="form-control" value="${ cate.descriptions }" />
 																</div>
 																<button class="btn btn-primary w-100 mt-3"
 																	id="liveToastBtn">Update</button>
@@ -273,10 +226,10 @@
 										</td>
 										<td class="text-center">
 											<button class="btn btn-danger" data-bs-toggle="modal"
-												data-bs-target="#modalDelte_${acc.id }">
+												data-bs-target="#modalDelte_${cate.id }">
 												<i class="fa-solid fa-trash-can"></i>
 											</button> <!-- Modal delete -->
-											<div class="modal fade" id="modalDelte_${acc.id}"
+											<div class="modal fade" id="modalDelte_${cate.id}"
 												data-bs-backdrop="static" data-bs-keyboard="false"
 												tabindex="-1" aria-labelledby="staticBackdropLabel"
 												aria-hidden="true">
@@ -284,17 +237,17 @@
 													<div class="modal-content">
 														<div class="modal-header bg-danger">
 															<h5 class="modal-title text-white"
-																id="staticBackdropLabel">Delete a account !</h5>
+																id="staticBackdropLabel">Delete a category !</h5>
 															<button type="button" class="btn" data-bs-dismiss="modal"
 																aria-label="Close">
 																<i class="fa-solid fa-xmark fs-5 text-white"></i>
 															</button>
 														</div>
 														<div class="modal-body" style="background-color: #fff2df">
-															<p>Warning : You are trying a account. This account
+															<p>Warning : You are trying a category. This category
 																will be permanently deleted !</p>
 															<a role="button"
-																href="/ASM_JAVA5/admin/accounts/delete/${ acc.id }"
+																href="/ASM_JAVA5/admin/categories/delete/${ cate.id }"
 																class="btn btn-danger w-100 "> Delete </a>
 														</div>
 													</div>
@@ -314,7 +267,7 @@
 								<c:forEach var="index" begin="0" end="${ data.totalPages - 1 }">
 									<li class="page-item mx-1"><a
 										class="page-link ${ index==page?'bg-black text-white':'' }"
-										href="/ASM_JAVA5/admin/accounts/index?page=${ index }">${ index + 1 }</a>
+										href="/ASM_JAVA5/admin/categories/index?page=${ index }">${ index + 1 }</a>
 									</li>
 								</c:forEach>
 							</ul>

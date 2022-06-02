@@ -37,7 +37,7 @@
 						class="list-group-item list-group-item-action border-0"
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-user fs-6 px-1"></i></span> Accounts
-					</a> <a href="#"
+					</a> <a href="/ASM_JAVA5/admin/products/index"
 						class="list-group-item list-group-item-action border-0 "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-cart-shopping fs-6 px-1"></i></span> Products
@@ -92,8 +92,17 @@
 								<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
 								</li>
 							</ul>
-							<span class="navbar-text"> Navbar text with an inline
-								element </span>
+							<span class="navbar-text" id="dropAccount" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false"> 
+								<span>Welcome thanhyou00 </span>
+								<i class="fa-solid fa-user fs-4"></i>
+							</span>
+							<ul class="dropdown-menu" aria-labelledby="dropAccount"
+								style="left: auto;right: 10px">
+								<li><a class="dropdown-item" href="#">Action</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
+								<li><a class="dropdown-item" href="./admin">Log out</a></li>
+							</ul>
 						</div>
 					</div>
 				</nav>
@@ -185,7 +194,7 @@
 													<div class="modal-content">
 														<div class="modal-header bg-info">
 															<h5 class="modal-title text-white"
-																id="staticBackdropLabel">Update a new category</h5>
+																id="staticBackdropLabel">Update a category</h5>
 															<button type="button" class="btn" data-bs-dismiss="modal"
 																aria-label="Close">
 																<i class="fa-solid fa-xmark fs-5 text-white"></i>
@@ -197,11 +206,13 @@
 																method="post" modelAttribute="category">
 																<div>
 																	<label>Name</label>
-																	<form:input path="name" class="form-control" value="${ cate.name }" />
+																	<form:input path="name" class="form-control"
+																		value="${ cate.name }" />
 																</div>
 																<div>
 																	<label>Descriptions</label>
-																	<form:input path="descriptions" class="form-control" value="${ cate.descriptions }" />
+																	<form:input path="descriptions" class="form-control"
+																		value="${ cate.descriptions }" />
 																</div>
 																<button class="btn btn-primary w-100 mt-3"
 																	id="liveToastBtn">Update</button>

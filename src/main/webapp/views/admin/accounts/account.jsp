@@ -36,7 +36,7 @@
 						class="list-group-item list-group-item-action border-0"
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-user fs-6 px-1"></i></span> Accounts
-					</a> <a href="#"
+					</a> <a href="/ASM_JAVA5/admin/products/index"
 						class="list-group-item list-group-item-action border-0 "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-cart-shopping fs-6 px-1"></i></span> Products
@@ -212,7 +212,7 @@
 													<div class="modal-content">
 														<div class="modal-header bg-info">
 															<h5 class="modal-title text-white"
-																id="staticBackdropLabel">Update a new account</h5>
+																id="staticBackdropLabel">Update a account</h5>
 															<button type="button" class="btn" data-bs-dismiss="modal"
 																aria-label="Close">
 																<i class="fa-solid fa-xmark fs-5 text-white"></i>

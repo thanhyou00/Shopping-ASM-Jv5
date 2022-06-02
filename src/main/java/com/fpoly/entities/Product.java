@@ -38,7 +38,7 @@ public class Product implements Serializable {
 	@Column(nullable = false, length = 255)
 	private String image;
 	@Column(nullable = false, precision = 10)
-	private int availabel;
+	private int available;
 	@Column(nullable = false, length = 10)
 	private String size;
 	@Column(nullable = false, length = 255)

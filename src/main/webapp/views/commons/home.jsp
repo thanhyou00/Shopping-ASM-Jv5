@@ -87,7 +87,8 @@ html *::-webkit-scrollbar-track {
 				</div>
 				<div class="d-flex px-4">
 					<ul class="navbar-nav">
-						<li class="nav-item"><a class="nav-link text-white"
+						<li class="nav-item">
+						<a class="nav-link text-white"
 							id="dropAccount" role="button" data-bs-toggle="dropdown"
 							aria-expanded="false" href="#"> <i
 								class="fa-solid fa-user fs-4"></i>
@@ -97,7 +98,8 @@ html *::-webkit-scrollbar-track {
 								<li><a class="dropdown-item" href="#">Action</a></li>
 								<li><a class="dropdown-item" href="#">Another action</a></li>
 								<li><a class="dropdown-item" href="./admin">Admin</a></li>
-							</ul></li>
+							</ul>
+							</li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="#"> <i
 								class="fa-solid fa-magnifying-glass fs-4"></i>

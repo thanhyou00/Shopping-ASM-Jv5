@@ -30,16 +30,16 @@ public class ProductController {
 
 	// create
 	@PostMapping("admin/products/store")
-	public String store(ProductModel product, Model model) {
+	public String store(ProductModel model) {
 		Product pro = new Product();
-		pro.setAvailable(product.getAvailable());
-		pro.setBrand(product.getBrand());
-		pro.setImage(product.getImage());
-		pro.setDescriptions(product.getDescriptions());
-		pro.setName(product.getName());
-		pro.setPrice(product.getPrice());
-		pro.setSize(product.getSize());
-		pro.setCategories(product.getCategories());
+		pro.setAvailable(model.getAvailable());
+		pro.setBrand(model.getBrand());
+		pro.setImage(model.getImage());
+		pro.setDescriptions(model.getDescriptions());
+		pro.setName(model.getName());
+		pro.setPrice(model.getPrice());
+		pro.setSize(model.getSize());
+		pro.setCategories(model.getCategories());
 		this.productRepo.save(pro);
 		return "redirect:/admin/products/index";
 	}
@@ -68,6 +68,7 @@ public class ProductController {
 		pro.setName(product.getName());
 		pro.setPrice(product.getPrice());
 		pro.setSize(product.getSize());
+		pro.setCategories(product.getCategories());
 		this.productRepo.save(pro);
 		return "redirect:/admin/products/index";
 	}

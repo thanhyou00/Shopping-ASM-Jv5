@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
+<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <link rel="icon" href="./public/images/logo-ico-small.svg" />
 <link rel="stylesheet"
-	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"/>
+	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 <!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
@@ -87,8 +89,7 @@ html *::-webkit-scrollbar-track {
 				</div>
 				<div class="d-flex px-4">
 					<ul class="navbar-nav">
-						<li class="nav-item">
-						<a class="nav-link text-white"
+						<li class="nav-item"><a class="nav-link text-white"
 							id="dropAccount" role="button" data-bs-toggle="dropdown"
 							aria-expanded="false" href="#"> <i
 								class="fa-solid fa-user fs-4"></i>
@@ -97,9 +98,8 @@ html *::-webkit-scrollbar-track {
 								style="top: auto; left: auto;">
 								<li><a class="dropdown-item" href="#">Action</a></li>
 								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><a class="dropdown-item" href="./admin">Admin</a></li>
-							</ul>
-							</li>
+								<li><a class="dropdown-item" href="/ASM_JAVA5/admin">Admin</a></li>
+							</ul></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="#"> <i
 								class="fa-solid fa-magnifying-glass fs-4"></i>
@@ -202,170 +202,39 @@ html *::-webkit-scrollbar-track {
 					<div class="col-3">
 						<h3>Danh mục</h3>
 						<div class="list-group">
-							<button type="button"
-								class="list-group-item list-group-item-action active"
-								aria-current="true">The current button</button>
-							<button type="button"
-								class="list-group-item list-group-item-action">A second
-								item</button>
-							<button type="button"
-								class="list-group-item list-group-item-action">A third
-								button item</button>
-							<button type="button"
-								class="list-group-item list-group-item-action">A fourth
-								button item</button>
-							<button type="button"
-								class="list-group-item list-group-item-action">A
-								disabled button item</button>
-							<button type="button"
-								class="list-group-item list-group-item-action">A
-								disabled button item</button>
-							<button type="button"
-								class="list-group-item list-group-item-action">A
-								disabled button item</button>
-							<button type="button"
-								class="list-group-item list-group-item-action">A
-								disabled button item</button>
-							<button type="button"
-								class="list-group-item list-group-item-action">A
-								disabled button item</button>
-							<button type="button"
-								class="list-group-item list-group-item-action">A
-								disabled button item</button>
+							<c:forEach items="${ listCate }" var="cate">
+								<button type="button"
+									class="list-group-item list-group-item-action"
+									aria-current="true">${ cate.name }</button>
+							</c:forEach>
 						</div>
 					</div>
 					<div class="col-9">
 						<h3>Sản phẩm</h3>
 						<div class="row row-cols-1 row-cols-md-4 g-4">
-							<div class="col">
-								<div class="card h-100">
-									<img
-										src="https://giayxshop.vn/wp-content/uploads/2021/12/z3046271490155_1f3ecf7b2b959a31273e4856fcddcc7e-scaled.jpg"
-										class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a longer card with supporting
-											text below as a natural lead-in to additional content. This
-											content is a little bit longer.</p>
+							<c:forEach items="${ listPro }" var="pro">
+								<div class="col">
+									<div class="card h-100">
+										<img src="${ pro.image }" class="card-img-top"
+											alt="${ pro.name }">
+										<div class="card-body">
+											<h5 class="card-title">${ pro.name }</h5>
+											<p class="card-text">${ pro.price }VND</p>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="col">
-								<div class="card h-100">
-									<img
-										src="https://giayxshop.vn/wp-content/uploads/2021/12/z3046271490155_1f3ecf7b2b959a31273e4856fcddcc7e-scaled.jpg"
-										class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a short card.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col">
-								<div class="card h-100">
-									<img
-										src="https://giayxshop.vn/wp-content/uploads/2021/12/z3046271490155_1f3ecf7b2b959a31273e4856fcddcc7e-scaled.jpg"
-										class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a longer card with supporting
-											text below as a natural lead-in to additional content.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col">
-								<div class="card h-100">
-									<img
-										src="https://giayxshop.vn/wp-content/uploads/2021/12/z3046271490155_1f3ecf7b2b959a31273e4856fcddcc7e-scaled.jpg"
-										class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a longer card with supporting
-											text below as a natural lead-in to additional content. This
-											content is a little bit longer.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col">
-								<div class="card h-100">
-									<img
-										src="https://giayxshop.vn/wp-content/uploads/2021/12/z3046271490155_1f3ecf7b2b959a31273e4856fcddcc7e-scaled.jpg"
-										class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a longer card with supporting
-											text below as a natural lead-in to additional content. This
-											content is a little bit longer.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col">
-								<div class="card h-100">
-									<img
-										src="https://giayxshop.vn/wp-content/uploads/2021/12/z3046271490155_1f3ecf7b2b959a31273e4856fcddcc7e-scaled.jpg"
-										class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a longer card with supporting
-											text below as a natural lead-in to additional content. This
-											content is a little bit longer.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col">
-								<div class="card h-100">
-									<img
-										src="https://giayxshop.vn/wp-content/uploads/2021/12/z3046271490155_1f3ecf7b2b959a31273e4856fcddcc7e-scaled.jpg"
-										class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a longer card with supporting
-											text below as a natural lead-in to additional content. This
-											content is a little bit longer.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col">
-								<div class="card h-100">
-									<img
-										src="https://giayxshop.vn/wp-content/uploads/2021/12/z3046271490155_1f3ecf7b2b959a31273e4856fcddcc7e-scaled.jpg"
-										class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a longer card with supporting
-											text below as a natural lead-in to additional content. This
-											content is a little bit longer.</p>
-									</div>
-								</div>
-							</div>
-							<div class="col">
-								<div class="card h-100">
-									<img
-										src="https://giayxshop.vn/wp-content/uploads/2021/12/z3046271490155_1f3ecf7b2b959a31273e4856fcddcc7e-scaled.jpg"
-										class="card-img-top" alt="...">
-									<div class="card-body">
-										<h5 class="card-title">Card title</h5>
-										<p class="card-text">This is a longer card with supporting
-											text below as a natural lead-in to additional content. This
-											content is a little bit longer.</p>
-									</div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 						<%-- Pagination --%>
-						<div class="row mt-3">
-							<nav aria-label="..." class="d-flex justify-content-center">
-								<ul class="pagination">
-									<li class="page-item disabled"><span class="page-link">Previous</span>
+						<div class="row mt-5">
+							<ul class="pagination justify-content-center">
+								<c:forEach var="index" begin="0" end="${ data.totalPages - 1 }">
+									<li class="page-item mx-1"><a
+										class="page-link ${ index==page?'bg-black text-white':'' }"
+										href="/ASM_JAVA5/admin/products/index?page=${ index }">${ index + 1 }</a>
 									</li>
-									<li class="page-item"><a class="page-link" href="#">1</a></li>
-									<li class="page-item active" aria-current="page"><span
-										class="page-link">2</span></li>
-									<li class="page-item"><a class="page-link" href="#">3</a></li>
-									<li class="page-item"><a class="page-link" href="#">Next</a>
-									</li>
-								</ul>
-							</nav>
+								</c:forEach>
+							</ul>
 						</div>
 					</div>
 				</div>
@@ -389,9 +258,10 @@ html *::-webkit-scrollbar-track {
 			<div class="col-4">
 				<p class="text-white fw-bold">CONTACT US</p>
 				<form action="">
-					<label for="exampleFormControlInput1" class="form-label" style="color: #dcdde1">Email
-						address</label> <input type="email" class="form-control"
-						id="exampleFormControlInput1" placeholder="name@example.com">
+					<label for="exampleFormControlInput1" class="form-label"
+						style="color: #dcdde1">Email address</label> <input type="email"
+						class="form-control" id="exampleFormControlInput1"
+						placeholder="name@example.com">
 					<button type="button" class="btn btn-primary w-100 mt-2">Send</button>
 				</form>
 			</div>
@@ -399,6 +269,7 @@ html *::-webkit-scrollbar-track {
 			<p class="text-center text-white fw-bold">Made by trucnvph17923</p>
 		</div>
 	</div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+	<script
+		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

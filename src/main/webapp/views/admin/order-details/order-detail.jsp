@@ -13,7 +13,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<title>Product</title>
+<title>Order detail</title>
 </head>
 <style>
 .dots {
@@ -138,45 +138,35 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form:form action="/ASM_JAVA5/admin/products/store"
-												method="post" modelAttribute="product">
+											<form:form action="/ASM_JAVA5/admin/order-details/store"
+												method="post" modelAttribute="order-detail">
 												<div>
-													<label>Name</label>
-													<form:input path="name" class="form-control" />
+													<label>Order ID</label>
+													<form:select path="order" class="form-select">
+														<c:forEach items="${ listOrder }" var="od">
+															<form:option value="${ od.id }">
+																${ od.id }
+															</form:option>
+														</c:forEach>
+													</form:select>
 												</div>
 												<div>
-													<label>Descriptions</label>
-													<form:input path="descriptions" class="form-control" />
+													<label>Product ID</label>
+													<form:select path="product" class="form-select">
+														<c:forEach items="${ listProduct }" var="pro">
+															<form:option value="${ pro.id }">
+																${ pro.id }
+															</form:option>
+														</c:forEach>
+													</form:select>
 												</div>
 												<div>
 													<label>Price</label>
 													<form:input path="price" class="form-control" />
 												</div>
 												<div>
-													<label>Image</label>
-													<form:input path="image" class="form-control" />
-												</div>
-												<div>
-													<label>Brand</label>
-													<form:input path="brand" class="form-control" />
-												</div>
-												<div>
-													<label>Available</label>
-													<form:input path="available" class="form-control" />
-												</div>
-												<div>
-													<label>Size</label>
-													<form:input path="size" class="form-control" />
-												</div>
-												<div>
-													<label>Category ID</label>
-													<form:select path="categories" class="form-select">
-														<c:forEach items="${ listCate }" var="cate">
-															<form:option value="${ cate.id }">
-																${ cate.id }
-															</form:option>
-														</c:forEach>
-													</form:select>
+													<label>Quantity</label>
+													<form:input path="quantity" class="form-control" />
 												</div>
 												<button class="btn btn-primary w-100 mt-3" id="liveToastBtn">Add</button>
 												<div class="position-fixed top-0 end-0 p-5"
@@ -206,35 +196,27 @@
 								<thead>
 									<tr>
 										<th>ID</th>
-										<th>Name</th>
+										<th>Order ID</th>
+										<th>Product ID</th>
 										<th>Price</th>
-										<th>Image</th>
-										<th>Brand</th>
-										<th>Size</th>
-										<th>Available</th>
-										<th>Descriptions</th>
-										<th>Category ID</th>
+										<th>Quantity</th>
 										<th colspan="2">Action</th>
 									</tr>
 								</thead>
 								<tbody>
-									<c:forEach items="${ data.content }" var="pro">
+									<c:forEach items="${ data.content }" var="odetail">
 										<tr>
-											<td>${ pro.id }</td>
-											<td>${ pro.name }</td>
-											<td>${ pro.price }</td>
-											<td class="dots">${ pro.image }</td>
-											<td>${ pro.brand }</td>
-											<td>${ pro.size }</td>
-											<td>${ pro.available }</td>
-											<td class="dots">${ pro.descriptions }</td>
-											<td>${ pro.categories.id }</td>
-											<td>
+											<td>${ odetail.id }</td>
+											<td>${ odetail.order.id }</td>
+											<td>${ odetail.product.id }</td>
+											<td>${ odetail.price }</td>
+											<td>${ odetail.quantity }</td>
+											<td class="text-center">
 												<button class="btn btn-primary" data-bs-toggle="modal"
-													data-bs-target="#modalUpdate_${pro.id }">
+													data-bs-target="#modalUpdate_${odetail.id }">
 													<i class="fa-solid fa-pen-to-square"></i>
 												</button> <!-- Modal update -->
-												<div class="modal fade" id="modalUpdate_${pro.id}"
+												<div class="modal fade" id="modalUpdate_${odetail.id}"
 													data-bs-backdrop="static" data-bs-keyboard="false"
 													tabindex="-1" aria-labelledby="staticBackdropLabel"
 													aria-hidden="true">
@@ -250,47 +232,35 @@
 															</div>
 															<div class="modal-body">
 																<form:form
-																	action="/ASM_JAVA5/admin/products/update/${ pro.id }"
-																	method="post" modelAttribute="product">
-																	<div>
-																		<label>Name</label>
-																		<form:input path="name" class="form-control"
-																			value="${ pro.name }" />
-																	</div>
-																	<div>
-																		<label>Price</label>
-																		<form:input path="price" class="form-control"
-																			value="${ pro.price }" />
-																	</div>
-																	<div>
-																		<label>Brand</label>
-																		<form:input path="brand" class="form-control"
-																			value="${ pro.brand }" />
-																	</div>
-																	<div>
-																		<label>Size</label>
-																		<form:input path="size" class="form-control"
-																			value="${ pro.size }" />
-																	</div>
-																	<div>
-																		<label>Available</label>
-																		<form:input path="available" class="form-control"
-																			value="${ pro.available }" />
-																	</div>
-																	<div>
-																		<label>Descriptions</label>
-																		<form:input path="descriptions" class="form-control"
-																			value="${ pro.descriptions }" />
-																	</div>
-																	<div>
-																		<label>Category ID</label>
-																		<form:select path="categories" class="form-select">
-																			<c:forEach items="${ listCate }" var="cate">
-																				<form:option value="${ cate.id }">
-																					${ cate.id }
-																				</form:option>
+																	action="/ASM_JAVA5/admin/order-details/update/${ odetail.id }"
+																	method="post" modelAttribute="order-detail">
+																	<div style="text-align: left;">
+																		<label>Order ID</label>
+																		<form:select path="order" class="form-select">
+																			<c:forEach items="${ listOrder }" var="od">
+																				<form:option value="${ od.id }">
+																				${ od.id }
+																			</form:option>
 																			</c:forEach>
 																		</form:select>
+																	</div>
+																	<div style="text-align: left;">
+																		<label>Product ID</label>
+																		<form:select path="product" class="form-select">
+																			<c:forEach items="${ listProduct }" var="pro">
+																				<form:option value="${ pro.id }">
+																			${ pro.id }
+																		</form:option>
+																			</c:forEach>
+																		</form:select>
+																	</div>
+																	<div style="text-align: left;">
+																		<label>Price</label>
+																		<form:input path="price" class="form-control" value="${ odetail.price }" />
+																	</div>
+																	<div style="text-align: left;">
+																		<label>Quantity</label>
+																		<form:input path="quantity" class="form-control" value="${ odetail.quantity }" />
 																	</div>
 																	<button class="btn btn-primary w-100 mt-3"
 																		id="liveToastBtn">Update</button>
@@ -315,10 +285,10 @@
 											</td>
 											<td class="text-center">
 												<button class="btn btn-danger" data-bs-toggle="modal"
-													data-bs-target="#modalDelte_${pro.id }">
+													data-bs-target="#modalDelte_${odetail.id }">
 													<i class="fa-solid fa-trash-can"></i>
 												</button> <!-- Modal delete -->
-												<div class="modal fade" id="modalDelte_${pro.id}"
+												<div class="modal fade" id="modalDelte_${odetail.id}"
 													data-bs-backdrop="static" data-bs-keyboard="false"
 													tabindex="-1" aria-labelledby="staticBackdropLabel"
 													aria-hidden="true">
@@ -326,17 +296,17 @@
 														<div class="modal-content">
 															<div class="modal-header bg-danger">
 																<h5 class="modal-title text-white"
-																	id="staticBackdropLabel">Delete a product !</h5>
+																	id="staticBackdropLabel">Delete a order detail !</h5>
 																<button type="button" class="btn"
 																	data-bs-dismiss="modal" aria-label="Close">
 																	<i class="fa-solid fa-xmark fs-5 text-white"></i>
 																</button>
 															</div>
 															<div class="modal-body" style="background-color: #fff2df">
-																<p>Warning : You are trying a product. This product
+																<p>Warning : You are trying a order detail. This order detail
 																	will be permanently deleted !</p>
 																<a role="button"
-																	href="/ASM_JAVA5/admin/products/delete/${ pro.id }"
+																	href="/ASM_JAVA5/admin/order-details/delete/${ pro.id }"
 																	class="btn btn-danger w-100 "> Delete </a>
 															</div>
 														</div>
@@ -355,7 +325,7 @@
 								<c:forEach var="index" begin="0" end="${ data.totalPages - 1 }">
 									<li class="page-item mx-1"><a
 										class="page-link ${ index==page?'bg-black text-white':'' }"
-										href="/ASM_JAVA5/admin/products/index?page=${ index }">${ index + 1 }</a>
+										href="/ASM_JAVA5/admin/order-details/index?page=${ index }">${ index + 1 }</a>
 									</li>
 								</c:forEach>
 							</ul>

@@ -2,7 +2,6 @@
 package com.fpoly.entities;
 
 import java.io.Serializable;
-import java.time.LocalDate;
 import java.util.Set;
 
 import javax.persistence.Column;
@@ -21,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "order")
+@Entity(name = "orders")
 public class Order implements Serializable {
 
 	private static final long serialVersionUID = 1L;
@@ -35,7 +34,7 @@ public class Order implements Serializable {
 	@Column(name = "shipping_address", nullable = false, length = 255)
 	private String shippingAddress;
 	@Column(name = "order_date", nullable = false)
-	private LocalDate orderDate;
+	private String orderDate;
 	@Column(name = "order_status", nullable = false, precision = 10)
 	private int orderStatus;
 	@ManyToOne(optional = false)

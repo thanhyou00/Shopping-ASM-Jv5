@@ -29,7 +29,8 @@
 				<hr>
 				<div class="list-group">
 					<p class="text-secondary fw-bold">Components</p>
-					<a href="/ASM_JAVA5/admin" class="list-group-item list-group-item-action border-0"
+					<a href="/ASM_JAVA5/admin"
+						class="list-group-item list-group-item-action border-0"
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-gauge-high fs-6 px-1"></i></span> Dash board
 					</a> <a href="/ASM_JAVA5/admin/accounts/index"
@@ -54,10 +55,14 @@
 						style="background-color: #0a3d62; color: #dcdde1"> <span>
 							<i class="fa-solid fa-arrow-down-9-1 fs-6 px-1"></i>
 					</span> Sale off
-					</a> <a href="#"
+					</a> <a href="/ASM_JAVA5/admin/orders/index"
 						class="list-group-item list-group-item-action border-0  "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-truck-fast fs-6 px-1"></i></span> Orders
+					</a> <a href="/ASM_JAVA5/admin/order-details/index"
+						class="list-group-item list-group-item-action border-0  "
+						style="background-color: #0a3d62; color: #dcdde1"> <span><i
+							class="fa-solid fa-calendar-check fs-6 px-1"></i></span> Order details
 					</a>
 					<p class="text-secondary fw-bold">Extras</p>
 					<a href="#"
@@ -126,23 +131,28 @@
 												method="post" modelAttribute="account">
 												<div>
 													<label>Full name</label>
-													<form:input path="fullname" class="form-control" />
+													<form:input path="fullname" class="form-control"/>
+													<form:errors path="fullname"/>
 												</div>
 												<div>
 													<label>Email</label>
 													<form:input path="email" type="email" class="form-control" />
+													<form:errors path="email" />
 												</div>
 												<div>
 													<label>User name</label>
 													<form:input path="username" class="form-control" />
+													<form:errors path="username" />
 												</div>
 												<div>
 													<label>Password</label>
 													<form:password path="password" class="form-control" />
+													<form:errors path="password" />
 												</div>
 												<div>
 													<label>Photo</label>
 													<form:input path="avatar" class="form-control" />
+													<form:errors path="avatar" />
 												</div>
 												<div>
 													<label>Admin</label>
@@ -196,10 +206,10 @@
 										<td>${ acc.username }</td>
 										<td>${ acc.email }</td>
 										<td class="text-center"><img src="${ acc.avatar }"
-											alt="${ acc.username }" width="50" height="50" /></td>
+											alt="${ acc.avatar }" width="50" height="50" /></td>
 										<td>${ acc.actived == 0 ? "In-Active" : "Active" }</td>
 										<td>${ acc.admin == 1 ? "Admin" : "Member" }</td>
-										<td>
+										<td class="text-center">
 											<button class="btn btn-primary" data-bs-toggle="modal"
 												data-bs-target="#modalUpdate_${acc.id }">
 												<i class="fa-solid fa-pen-to-square"></i>
@@ -222,30 +232,29 @@
 															<form:form
 																action="/ASM_JAVA5/admin/accounts/update/${ acc.id }"
 																method="post" modelAttribute="account">
-																<div>
+																<div style="text-align: left;">
 																	<label>Full name</label>
 																	<form:input path="fullname" class="form-control"
 																		value="${ acc.fullname }" />
 																</div>
-																<div>
+																<div style="text-align: left;">
 																	<label>Email</label>
 																	<form:input path="email" type="email"
 																		class="form-control" value="${ acc.email }" />
 																</div>
-																<div>
+																<div style="text-align: left;">
 																	<label>User name</label>
 																	<form:input path="username" class="form-control"
 																		value="${ acc.username }" />
 																</div>
-																<div>
+																<div style="text-align: left;">
 																	<label>Photo</label>
 																	<form:input path="avatar" class="form-control"
 																		value="${ acc.avatar }" />
 																</div>
-																<div>
+																<div style="text-align: left;">
 																	<label>Admin</label>
-																	<form:select path="admin" class="form-select"
-																		itemValue="${ acc.admin }">
+																	<form:select path="admin" class="form-select">
 																		<form:option value="0">Member</form:option>
 																		<form:option value="1">Admin</form:option>
 																	</form:select>

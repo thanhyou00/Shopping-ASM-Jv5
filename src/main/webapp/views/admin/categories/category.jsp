@@ -55,10 +55,14 @@
 						style="background-color: #0a3d62; color: #dcdde1"> <span>
 							<i class="fa-solid fa-arrow-down-9-1 fs-6 px-1"></i>
 					</span> Sale off
-					</a> <a href="#"
+					</a> <a href="/ASM_JAVA5/admin/orders/index"
 						class="list-group-item list-group-item-action border-0  "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-truck-fast fs-6 px-1"></i></span> Orders
+					</a> <a href="/ASM_JAVA5/admin/order-details/index"
+						class="list-group-item list-group-item-action border-0  "
+						style="background-color: #0a3d62; color: #dcdde1"> <span><i
+							class="fa-solid fa-calendar-check fs-6 px-1"></i></span> Order details
 					</a>
 					<p class="text-secondary fw-bold">Extras</p>
 					<a href="#"
@@ -93,12 +97,11 @@
 								</li>
 							</ul>
 							<span class="navbar-text" id="dropAccount" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false"> 
-								<span>Welcome thanhyou00 </span>
-								<i class="fa-solid fa-user fs-4"></i>
+								data-bs-toggle="dropdown" aria-expanded="false"> <span>Welcome
+									thanhyou00 </span> <i class="fa-solid fa-user fs-4"></i>
 							</span>
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
-								style="left: auto;right: 10px">
+								style="left: auto; right: 10px">
 								<li><a class="dropdown-item" href="#">Action</a></li>
 								<li><a class="dropdown-item" href="#">Another action</a></li>
 								<li><a class="dropdown-item" href="./admin">Log out</a></li>

@@ -52,10 +52,16 @@
 						style="background-color: #0a3d62; color: #dcdde1"> <span>
 							<i class="fa-solid fa-arrow-down-9-1 fs-6 px-1"></i>
 					</span> Sale off
-					</a> <a href="#"
+					</a> 
+					<a href="/ASM_JAVA5/admin/orders/index"
 						class="list-group-item list-group-item-action border-0  "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-truck-fast fs-6 px-1"></i></span> Orders
+					</a>
+					<a href="/ASM_JAVA5/admin/order-details/index"
+						class="list-group-item list-group-item-action border-0  "
+						style="background-color: #0a3d62; color: #dcdde1"> <span><i
+							class="fa-solid fa-calendar-check fs-6 px-1"></i></span> Order details
 					</a>
 					<p class="text-secondary fw-bold">Extras</p>
 					<a href="#"

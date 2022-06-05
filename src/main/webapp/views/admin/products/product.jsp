@@ -116,7 +116,7 @@
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb mb-0">
 							<li class="breadcrumb-item"><a href="/ASM_JAVA5/admin">Admin</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Accounts</li>
+							<li class="breadcrumb-item active" aria-current="page">Products</li>
 						</ol>
 					</nav>
 				</div>
@@ -287,7 +287,7 @@
 																		<form:select path="categories" class="form-select">
 																			<c:forEach items="${ listCate }" var="cate">
 																				<form:option value="${ cate.id }">
-																					${ cate.id }
+																					${ cate.id } ${ pro.categories.id==cate.id?'selected':'' }
 																				</form:option>
 																			</c:forEach>
 																		</form:select>

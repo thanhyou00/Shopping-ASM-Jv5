@@ -6,14 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="./public/images/logo-ico-small.svg" />
+<link rel="icon" href="/ASM_JAVA5/public/images/logo-ico-small.svg" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 <!-- Bootstrap CSS -->
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<title>Shoes shop</title>
+<title>${ product.name }</title>
 </head>
 <style>
 //
@@ -53,7 +53,7 @@ html *::-webkit-scrollbar-track {
 			style="background-color: #0a3d62">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#"> <img alt="logo"
-					src="./public/images/logo-ico.svg" width="80" height="80">
+					src="/ASM_JAVA5/public/images/logo-ico.svg" width="80" height="80">
 				</a>
 				<button class="navbar-toggler " type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -97,7 +97,7 @@ html *::-webkit-scrollbar-track {
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
 								style="top: auto; left: auto;">
 								<li><a class="dropdown-item" href="#">Action</a></li>
-								<li><a class="dropdown-item" href="/ASM_JAVA5/login">Login</a></li>
+								<li><a class="dropdown-item" href="#">Another action</a></li>
 								<li><a class="dropdown-item" href="/ASM_JAVA5/admin">Admin</a></li>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link text-white"
@@ -105,7 +105,7 @@ html *::-webkit-scrollbar-track {
 								class="fa-solid fa-magnifying-glass fs-4"></i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
-							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
+							aria-current="page" href="#"> <i
 								class="fa-solid fa-cart-shopping fs-4"></i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
@@ -120,132 +120,54 @@ html *::-webkit-scrollbar-track {
 				</div>
 			</div>
 		</nav>
-		<%-- Slider --%>
-		<div class="row" style="margin-top: 120px">
-			<div id="carouselExampleInterval" class="carousel slide"
-				data-bs-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active" data-bs-interval="10000">
-						<img src="./public/images/post-slide-1.png"
-							class="d-block w-100 rounded" alt="sale" style="height: 550px">
-					</div>
-					<div class="carousel-item" data-bs-interval="2000">
-						<img src="./public/images/post-slide-2.png"
-							class="d-block w-100 rounded" alt="sale" style="height: 550px">
-					</div>
-					<div class="carousel-item">
-						<img src="./public/images/post-slide-3.png"
-							class="d-block w-100 rounded" alt="sale" style="height: 550px">
-					</div>
-				</div>
-				<button class="carousel-control-prev" type="button"
-					data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button"
-					data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
-		</div>
-		<%-- Service --%>
-		<div class="container mt-5 border rounded">
-			<div class="row">
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange" src="./public/images/exchange-svgrepo-com.svg"
-						height="45" width="45">
-					<div>Exchange</div>
-				</div>
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange"
-						src="./public/images/free-shipping-svgrepo-com.svg" height="45"
-						width="45">
-					<div>Free ship</div>
-				</div>
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange"
-						src="./public/images/award-quality-svgrepo-com.svg" height="45"
-						width="45">
-					<div>Quality</div>
-				</div>
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange" src="./public/images/flash-svgrepo-com.svg"
-						height="45" width="45">
-					<div>Cheap</div>
-				</div>
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange"
-						src="./public/images/shipping-fast-solid-svgrepo-com.svg"
-						height="45" width="45">
-					<div>Fast shipping</div>
-				</div>
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange"
-						src="./public/images/operator-customer-service-svgrepo-com.svg"
-						height="45" width="45">
-					<div>CSKH</div>
-				</div>
-			</div>
+		<div class="bg-light p-3" style="margin-top: 120px">
+			<nav aria-label="breadcrumb">
+				<ol class="breadcrumb mb-0">
+					<li class="breadcrumb-item"><a href="/ASM_JAVA5/">Home</a></li>
+					<li class="breadcrumb-item active" aria-current="page">${ product.name }</li>
+				</ol>
+			</nav>
 		</div>
 		<%-- Main --%>
-		<div style="background-color: #f5f5f5">
-			<div class="container-fluid">
-				<div class="row mt-5 p-5 gx-5">
-					<div class="col-3">
-						<h3>Danh mục</h3>
-						<div class="list-group">
-							<c:forEach items="${ listCate }" var="cate">
-								<button type="button"
-									class="list-group-item list-group-item-action"
-									aria-current="true">${ cate.name }</button>
-							</c:forEach>
-						</div>
-					</div>
-					<div class="col-9">
-						<h3>Sản phẩm</h3>
-						<div class="row row-cols-1 row-cols-md-4 g-4">
-							<c:forEach items="${ listPro }" var="pro">
-								<div class="col">
-									<div class="card h-100">
-										<img src="${ pro.image }" class="card-img-top"
-											alt="${ pro.name }">
-										<div class="card-body">
-											<h5 class="card-title">
-												<a class="text-decoration-none" href="/ASM_JAVA5/user/buy-product/${ pro.id }">${ pro.name }</a>
-											</h5>
-											<p class="card-text text-danger">${ pro.price } VND</p>
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
-						<%-- Pagination --%>
-						<div class="row mt-5">
-							<ul class="pagination justify-content-center">
-								<c:forEach var="index" begin="0" end="${ data.totalPages - 1 }">
-									<li class="page-item mx-1"><a
-										class="page-link ${ index==page?'bg-black text-white':'' }"
-										href="/ASM_JAVA5/admin/products/index?page=${ index }">${ index + 1 }</a>
-									</li>
-								</c:forEach>
-							</ul>
-						</div>
-					</div>
+		<div class="container">
+			<div class="row gy-1 p-5">
+				<div class="col-6 p-2">
+					<img alt="${ product.name }" src="${ product.image }" class="w-100">
+				</div>
+				<div class="col-6 px-5">
+					<h1>${ product.name }</h1>
+					<h4 class="text-danger fw-bold">${ product.price }
+						<span>VND</span>
+					</h4>
+					<p class="mt-4">${ product.descriptions }</p>
+					<h5>
+						Loại sản phẩm : <span class="text-secondary">${ product.categories.name }</span>
+					</h5>
+					<h5>
+						Trạng thái : <span class="text-secondary">${ product.available=='1'?'Còn hàng':'Hết hàng' }</span>
+					</h5>
+					<h5>Số lượng :</h5>
+					<nav aria-label="Page navigation example">
+						<ul class="pagination">
+							<li class="page-item"><a class="page-link" href="#">
+								<i class="fa-solid fa-minus"></i>
+							</a></li>
+							<li class="page-item"> <p class="page-link text-black">10</p> </li>
+							<li class="page-item"><a class="page-link" href="">
+								<i class="fa-solid fa-plus"></i>
+							</a></li>
+						</ul>
+					</nav>
+					<button class="btn btn-info w-100 text-white">
+						<i class="fa-solid fa-cart-shopping"></i> <span>ADD TO CART</span>
+					</button>
 				</div>
 			</div>
 		</div>
 		<%-- Footer --%>
 		<div class="row mt-5 p-4" style="background-color: #0a3d62">
 			<div class="col-4 text-center">
-				<img alt="logo" src="./public/images/logo-ico-small.svg">
+				<img alt="logo" src="/ASM_JAVA5/public/images/logo-ico-small.svg">
 				<p style="color: #dcdde1">FPT Polytechnic Shopping</p>
 			</div>
 			<div class="col-4">

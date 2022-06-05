@@ -128,7 +128,7 @@
 										</div>
 										<div class="modal-body">
 											<form:form action="/ASM_JAVA5/admin/accounts/store"
-												method="post" modelAttribute="account">
+												method="post" modelAttribute="account" class="needs-validation">
 												<div>
 													<label>Full name</label>
 													<form:input path="fullname" class="form-control"/>

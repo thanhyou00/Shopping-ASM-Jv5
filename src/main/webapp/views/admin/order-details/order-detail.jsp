@@ -116,7 +116,7 @@
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb mb-0">
 							<li class="breadcrumb-item"><a href="/ASM_JAVA5/admin">Admin</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Accounts</li>
+							<li class="breadcrumb-item active" aria-current="page">Order details</li>
 						</ol>
 					</nav>
 				</div>

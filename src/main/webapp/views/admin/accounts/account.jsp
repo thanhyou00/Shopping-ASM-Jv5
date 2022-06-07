@@ -255,8 +255,8 @@
 																<div style="text-align: left;">
 																	<label>Admin</label>
 																	<form:select path="admin" class="form-select">
-																		<form:option value="0">Member</form:option>
-																		<form:option value="1">Admin</form:option>
+																		<form:option value="0" selected="${ acc.admin == 0 ? 'true' : 'false' }">Member</form:option>
+																		<form:option value="1" selected="${ acc.admin == 1 ? 'true' : 'false' }">Admin</form:option>
 																	</form:select>
 																</div>
 																<button class="btn btn-primary w-100 mt-3"

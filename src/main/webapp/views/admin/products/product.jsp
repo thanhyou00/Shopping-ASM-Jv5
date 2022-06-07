@@ -286,8 +286,9 @@
 																		<label>Category ID</label>
 																		<form:select path="categories" class="form-select">
 																			<c:forEach items="${ listCate }" var="cate">
-																				<form:option value="${ cate.id }">
-																					${ cate.id } ${ pro.categories.id==cate.id?'selected':'' }
+																				<form:option value="${ cate.id }"
+																					selected="${ cate.id == pro.categories.id ? 'true' : 'false' }">
+																					${ cate.id }
 																				</form:option>
 																			</c:forEach>
 																		</form:select>

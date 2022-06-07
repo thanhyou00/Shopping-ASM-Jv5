@@ -222,7 +222,9 @@
 																	<label>Account ID</label>
 																	<form:select path="account" class="form-select">
 																		<c:forEach items="${ listAcc }" var="acc">
-																			<form:option value="${ acc.id }">
+																<form:option value="${ acc.id }"
+																selected="${ acc.id == od.account.id ? 'true' : 'false' }"
+																>
 																		${ acc.id }
 																	</form:option>
 																		</c:forEach>

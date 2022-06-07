@@ -238,7 +238,9 @@
 																		<label>Order ID</label>
 																		<form:select path="order" class="form-select">
 																			<c:forEach items="${ listOrder }" var="od">
-																				<form:option value="${ od.id }">
+																				<form:option value="${ od.id }" 
+																				selected="${ od.id == odetail.order.id ? 'true' : 'false' }"
+																				>
 																				${ od.id }
 																			</form:option>
 																			</c:forEach>
@@ -248,7 +250,9 @@
 																		<label>Product ID</label>
 																		<form:select path="product" class="form-select">
 																			<c:forEach items="${ listProduct }" var="pro">
-																				<form:option value="${ pro.id }">
+																				<form:option value="${ pro.id }"
+																				selected="${ pro.id == odetail.product.id ? 'true' : 'false' }"
+																				>
 																			${ pro.id }
 																		</form:option>
 																			</c:forEach>

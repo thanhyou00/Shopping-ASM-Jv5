@@ -9,4 +9,5 @@ import com.fpoly.entities.Account;
 public interface AccountRepository extends JpaRepository<Account, Integer> {
 
 	public Account findByEmailEquals(String email);
+
 }

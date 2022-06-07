@@ -64,7 +64,7 @@ html *::-webkit-scrollbar-track {
 				<div class="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link text-white"
-							aria-current="page" href="#">Home</a></li>
+							aria-current="page" href="/ASM_JAVA5/">Home</a></li>
 						<li class="nav-item"><a class="nav-link text-white" href="#">Features</a>
 						</li>
 						<li class="nav-item"><a class="nav-link text-white" href="#">Features</a>
@@ -105,7 +105,7 @@ html *::-webkit-scrollbar-track {
 								class="fa-solid fa-magnifying-glass fs-4"></i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
-							aria-current="page" href="#"> <i
+							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
 								class="fa-solid fa-cart-shopping fs-4"></i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"

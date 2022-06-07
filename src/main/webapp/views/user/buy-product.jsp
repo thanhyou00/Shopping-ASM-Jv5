@@ -64,7 +64,7 @@ html *::-webkit-scrollbar-track {
 				<div class="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link text-white"
-							aria-current="page" href="#">Home</a></li>
+							aria-current="page" href="/ASM_JAVA5/">Home</a></li>
 						<li class="nav-item"><a class="nav-link text-white" href="#">Features</a>
 						</li>
 						<li class="nav-item"><a class="nav-link text-white" href="#">Features</a>
@@ -105,7 +105,7 @@ html *::-webkit-scrollbar-track {
 								class="fa-solid fa-magnifying-glass fs-4"></i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
-							aria-current="page" href="#"> <i
+							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
 								class="fa-solid fa-cart-shopping fs-4"></i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
@@ -130,39 +130,56 @@ html *::-webkit-scrollbar-track {
 		</div>
 		<%-- Main --%>
 		<div class="container">
-			<div class="row gy-1 p-5">
-				<div class="col-6 p-2">
-					<img alt="${ product.name }" src="${ product.image }" class="w-100">
-				</div>
-				<div class="col-6 px-5">
-					<h1>${ product.name }</h1>
-					<h4 class="text-danger fw-bold">${ product.price }
-						<span>VND</span>
-					</h4>
-					<p class="mt-4">${ product.descriptions }</p>
-					<h5>
-						Loại sản phẩm : <span class="text-secondary">${ product.categories.name }</span>
-					</h5>
-					<h5>
-						Trạng thái : <span class="text-secondary">${ product.available=='1'?'Còn hàng':'Hết hàng' }</span>
-					</h5>
-					<h5>Số lượng :</h5>
-					<nav aria-label="Page navigation example">
-						<ul class="pagination">
-							<li class="page-item"><a class="page-link" href="#">
+			<form action="/ASM_JAVA5/user/store" method="post">
+			<input name="product" type="hidden" value="${ product.id }" />
+			<input name="price" type="hidden" value="${ product.price }" />
+			<input name="quantity" type="hidden" value="${ quantity }" />
+				<div class="row gy-1 p-5">
+					<div class="col-6 p-2">
+						<img alt="${ product.name }" src="${ product.image }"
+							class="w-100">
+							
+					</div>
+					<div class="col-6 px-5">
+						<h1>${ product.name }</h1>
+						<h4 class="text-danger fw-bold">${ product.price }
+							<span>VND</span>
+						</h4>
+						<p class="mt-4">${ product.descriptions }</p>
+						<h5>
+							Loại sản phẩm : <span class="text-secondary">${ product.categories.name }</span>
+						</h5>
+						
+						<h5>
+							Trạng thái : <span class="text-secondary">${ product.available=='1'?'Còn hàng':'Hết hàng' }</span>
+						</h5>
+						<h5>Số lượng :</h5>
+						<nav aria-label="Page navigation example">
+							<ul class="pagination">
+								<li class="page-item">
+								<button type="button" class="page-link" onClick="onDown()"> 
 								<i class="fa-solid fa-minus"></i>
-							</a></li>
-							<li class="page-item"> <p class="page-link text-black">10</p> </li>
-							<li class="page-item"><a class="page-link" href="">
+								</button>
+								</li>
+								<li class="page-item">
+									<p class="text-black">
+										<input id="quantity" name="quantity" value="1" class="form-control"/>
+									</p>
+								</li>
+								<li class="page-item">
+								<button type="button" class="page-link" onClick="onUp()"> 
 								<i class="fa-solid fa-plus"></i>
-							</a></li>
-						</ul>
-					</nav>
-					<button class="btn btn-info w-100 text-white">
-						<i class="fa-solid fa-cart-shopping"></i> <span>ADD TO CART</span>
-					</button>
+								</button>
+								</li>
+							</ul>
+						</nav>
+						<button class="btn btn-info w-100 text-white">
+							<i class="fa-solid fa-cart-shopping"></i> <span>ADD TO
+								CART</span>
+						</button>
+					</div>
 				</div>
-			</div>
+			</form>
 		</div>
 		<%-- Footer --%>
 		<div class="row mt-5 p-4" style="background-color: #0a3d62">
@@ -193,6 +210,21 @@ html *::-webkit-scrollbar-track {
 			<p class="text-center text-white fw-bold">Made by trucnvph17923</p>
 		</div>
 	</div>
+	<script>
+	var quantity = 1;
+	
+	function onDown() {
+		if(quantity>=2) {
+			quantity -=1;
+		}
+	  document.getElementById("quantity").value= quantity;
+	};
+
+	function onUp() {
+		quantity +=1;
+	  document.getElementById("quantity").value= quantity;
+	};
+	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>

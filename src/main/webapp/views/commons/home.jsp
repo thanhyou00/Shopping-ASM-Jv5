@@ -64,7 +64,7 @@ html *::-webkit-scrollbar-track {
 				<div class="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link text-white"
-							aria-current="page" href="#">Home</a></li>
+							aria-current="page" href="/ASM_JAVA5/">Home</a></li>
 						<li class="nav-item"><a class="nav-link text-white" href="#">Features</a>
 						</li>
 						<li class="nav-item"><a class="nav-link text-white" href="#">Features</a>
@@ -96,9 +96,13 @@ html *::-webkit-scrollbar-track {
 						</a>
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
 								style="top: auto; left: auto;">
-								<li><a class="dropdown-item" href="#">Action</a></li>
+								<li><a class="dropdown-item" href="/ASM_JAVA5/logout">Logout</a></li>
+								<c:if test="${ userLogin == null }">								
 								<li><a class="dropdown-item" href="/ASM_JAVA5/login">Login</a></li>
+								</c:if>
+								<c:if test="${ userLogin.admin == 1 }">
 								<li><a class="dropdown-item" href="/ASM_JAVA5/admin">Admin</a></li>
+								</c:if>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="#"> <i

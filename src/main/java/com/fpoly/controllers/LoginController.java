@@ -30,7 +30,7 @@ public class LoginController {
 		Account userLogin = this.accRepo.findByEmailEquals(email);
 		if (userLogin != null) {
 			session.setAttribute("userLogin", userLogin);
-			return "redirect:/";
+			return "redirect:/home";
 		}
 		return "commons/login";
 	}

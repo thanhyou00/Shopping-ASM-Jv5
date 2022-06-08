@@ -10,4 +10,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 
 	public Account findByEmailEquals(String email);
 
+//	@Query(value = "SELECT acc FROM Account acc")
+//	List<Account> getDemo();
+
 }

@@ -64,20 +64,19 @@ html *::-webkit-scrollbar-track {
 				<div class="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link text-white"
-							aria-current="page" href="/ASM_JAVA5/">Home</a></li>
-						<li class="nav-item"><a class="nav-link text-white" href="#">Features</a>
+							aria-current="page" href="/ASM_JAVA5/home">Home</a></li>
+						<li class="nav-item"><a class="nav-link text-white" href="#">Sale
+								off</a></li>
+						<li class="nav-item"><a class="nav-link text-white" href="#">Contact
+								us</a></li>
+						<li class="nav-item"><a class="nav-link text-white" href="#">Feedbacks</a>
 						</li>
-						<li class="nav-item"><a class="nav-link text-white" href="#">Features</a>
-						</li>
-						<li class="nav-item"><a class="nav-link text-white" href="#">Features</a>
-						</li>
-						<li class="nav-item"><a class="nav-link text-white" href="#">Pricing</a>
+						<li class="nav-item"><a class="nav-link text-white" href="#">History</a>
 						</li>
 						<li class="nav-item dropdown"><a
 							class="nav-link dropdown-toggle text-white" href="#"
 							id="navbarDropdownMenuLink" role="button"
-							data-bs-toggle="dropdown" aria-expanded="false"> Dropdown
-								link </a>
+							data-bs-toggle="dropdown" aria-expanded="false">Category</a>
 							<ul class="dropdown-menu"
 								aria-labelledby="navbarDropdownMenuLink">
 								<li><a class="dropdown-item" href="#">Action</a></li>
@@ -96,9 +95,15 @@ html *::-webkit-scrollbar-track {
 						</a>
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
 								style="top: auto; left: auto;">
-								<li><a class="dropdown-item" href="#">Action</a></li>
-								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><a class="dropdown-item" href="/ASM_JAVA5/admin">Admin</a></li>
+								<c:if test="${ userLogin != null }">
+									<li><a class="dropdown-item" href="/ASM_JAVA5/logout">Logout</a></li>
+								</c:if>
+								<c:if test="${ userLogin == null }">
+									<li><a class="dropdown-item" href="/ASM_JAVA5/login">Login</a></li>
+								</c:if>
+								<c:if test="${ userLogin.admin == 1 }">
+									<li><a class="dropdown-item" href="/ASM_JAVA5/admin">Admin</a></li>
+								</c:if>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="#"> <i
@@ -106,10 +111,10 @@ html *::-webkit-scrollbar-track {
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
-								class="fa-solid fa-cart-shopping fs-4 position-relative"> 
-								<span
-									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5em">
-										${ countCart } <span class="visually-hidden">unread messages</span>
+								class="fa-solid fa-cart-shopping fs-4 position-relative"> <span
+									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+									style="font-size: 0.5em"> ${ countCart } <span
+										class="visually-hidden">unread messages</span>
 								</span>
 							</i>
 						</a></li>
@@ -145,30 +150,59 @@ html *::-webkit-scrollbar-track {
 						</thead>
 						<tbody>
 							<c:forEach items="${ listDetail }" var="detail">
-							<tr>
-								<td>
-								<img alt="${ detail.product.name }" src="${ detail.product.image }" width="50" height="50">
-								${ detail.product.name }
-								</td>
-								<td>${ detail.product.categories.name }</td>
-								<td>${ detail.price }</td>
-								<td>${ detail.quantity }</td>
-								<td>${ detail.price*detail.quantity }</td>
-								<td>
-									<a type="button" class="btn  btn-danger" href="">
-										<i class="fa-solid fa-xmark"></i>
-									</a>
-								</td>
-							</tr>
+								<tr>
+									<td><img alt="${ detail.product.name }"
+										src="${ detail.product.image }" width="50" height="50">
+										${ detail.product.name }</td>
+									<td>${ detail.product.categories.name }</td>
+									<td>${ detail.price }</td>
+									<td>${ detail.quantity }</td>
+									<td>${ detail.price*detail.quantity }</td>
+									<td>
+										<button class="btn btn-danger" data-bs-toggle="modal"
+											data-bs-target="#modalDelte_${detail.id}_${detail.order.id}">
+											<i class="fa-solid fa-trash-can"></i>
+										</button> <!-- Modal delete -->
+										<div class="modal fade"
+											id="modalDelte_${detail.id}_${detail.order.id}"
+											data-bs-backdrop="static" data-bs-keyboard="false"
+											tabindex="-1" aria-labelledby="staticBackdropLabel"
+											aria-hidden="true">
+											<div class="modal-dialog">
+												<div class="modal-content">
+													<div class="modal-header bg-danger">
+														<h5 class="modal-title text-white"
+															id="staticBackdropLabel">Delete a cart !</h5>
+														<button type="button" class="btn" data-bs-dismiss="modal"
+															aria-label="Close">
+															<i class="fa-solid fa-xmark fs-5 text-white"></i>
+														</button>
+													</div>
+													<div class="modal-body" style="background-color: #fff2df">
+														<p>Warning : You are trying a cart. This cart will be
+															permanently deleted !</p>
+														<a type="button" class="btn  btn-danger w-100"
+															href="/ASM_JAVA5/user/delete/${detail.id}_${detail.order.id}">
+															Delete
+														</a>
+													</div>
+												</div>
+											</div>
+										</div>
+									</td>
+								</tr>
 							</c:forEach>
 						</tbody>
 					</table>
 					<div class="row">
 						<div class="col-3">
-						<h4>Tổng tiền : <span class="text-danger">${ totalPrice } VND</span> </h4>
+							<h4>
+								Tổng tiền : <span class="text-danger">${ totalPrice } VND</span>
+							</h4>
 						</div>
 						<div class="col-3 offset-6">
-							<button class="btn btn-primary w-100">Thanh toán</button>
+							<a class="btn btn-primary w-100" href="/ASM_JAVA5/user/payment">Thanh
+								toán</a>
 						</div>
 					</div>
 				</div>

@@ -65,10 +65,10 @@ html *::-webkit-scrollbar-track {
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="/ASM_JAVA5/home">Home</a></li>
-						<li class="nav-item"><a class="nav-link text-white" href="#">Sale off</a>
-						</li>
-						<li class="nav-item"><a class="nav-link text-white" href="#">Contact us</a>
-						</li>
+						<li class="nav-item"><a class="nav-link text-white" href="#">Sale
+								off</a></li>
+						<li class="nav-item"><a class="nav-link text-white" href="#">Contact
+								us</a></li>
 						<li class="nav-item"><a class="nav-link text-white" href="#">Feedbacks</a>
 						</li>
 						<li class="nav-item"><a class="nav-link text-white" href="#">History</a>
@@ -96,7 +96,7 @@ html *::-webkit-scrollbar-track {
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
 								style="top: auto; left: auto;">
 								<c:if test="${ userLogin != null }">
-								<li><a class="dropdown-item" href="/ASM_JAVA5/logout">Logout</a></li>
+									<li><a class="dropdown-item" href="/ASM_JAVA5/logout">Logout</a></li>
 								</c:if>
 								<c:if test="${ userLogin == null }">
 									<li><a class="dropdown-item" href="/ASM_JAVA5/login">Login</a></li>
@@ -104,18 +104,17 @@ html *::-webkit-scrollbar-track {
 								<c:if test="${ userLogin.admin == 1 }">
 									<li><a class="dropdown-item" href="/ASM_JAVA5/admin">Admin</a></li>
 								</c:if>
-							</ul>
-							</li>
+							</ul></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="#"> <i
 								class="fa-solid fa-magnifying-glass fs-4"></i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
-								class="fa-solid fa-cart-shopping fs-4 position-relative"> 
-								<span
-									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5em">
-										${ countCart } <span class="visually-hidden">unread messages</span>
+								class="fa-solid fa-cart-shopping fs-4 position-relative"> <span
+									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+									style="font-size: 0.5em"> ${ countCart } <span
+										class="visually-hidden">unread messages</span>
 								</span>
 							</i>
 						</a></li>
@@ -131,126 +130,21 @@ html *::-webkit-scrollbar-track {
 				</div>
 			</div>
 		</nav>
-		<%-- Slider --%>
-		<div class="row" style="margin-top: 120px">
-			<div id="carouselExampleInterval" class="carousel slide"
-				data-bs-ride="carousel">
-				<div class="carousel-inner">
-					<div class="carousel-item active" data-bs-interval="10000">
-						<img src="./public/images/post-slide-1.png"
-							class="d-block w-100 rounded" alt="sale" style="height: 550px">
-					</div>
-					<div class="carousel-item" data-bs-interval="2000">
-						<img src="./public/images/post-slide-2.png"
-							class="d-block w-100 rounded" alt="sale" style="height: 550px">
-					</div>
-					<div class="carousel-item">
-						<img src="./public/images/post-slide-3.png"
-							class="d-block w-100 rounded" alt="sale" style="height: 550px">
-					</div>
-				</div>
-				<button class="carousel-control-prev" type="button"
-					data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
-					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Previous</span>
-				</button>
-				<button class="carousel-control-next" type="button"
-					data-bs-target="#carouselExampleInterval" data-bs-slide="next">
-					<span class="carousel-control-next-icon" aria-hidden="true"></span>
-					<span class="visually-hidden">Next</span>
-				</button>
-			</div>
-		</div>
-		<%-- Service --%>
-		<div class="container mt-5 border rounded">
-			<div class="row">
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange" src="./public/images/exchange-svgrepo-com.svg"
-						height="45" width="45">
-					<div>Exchange</div>
-				</div>
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange"
-						src="./public/images/free-shipping-svgrepo-com.svg" height="45"
-						width="45">
-					<div>Free ship</div>
-				</div>
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange"
-						src="./public/images/award-quality-svgrepo-com.svg" height="45"
-						width="45">
-					<div>Quality</div>
-				</div>
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange" src="./public/images/flash-svgrepo-com.svg"
-						height="45" width="45">
-					<div>Cheap</div>
-				</div>
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange"
-						src="./public/images/shipping-fast-solid-svgrepo-com.svg"
-						height="45" width="45">
-					<div>Fast shipping</div>
-				</div>
-				<div
-					class="col-2 d-flex justify-content-center align-items-center p-3">
-					<img alt="exchange"
-						src="./public/images/operator-customer-service-svgrepo-com.svg"
-						height="45" width="45">
-					<div>CSKH</div>
-				</div>
-			</div>
-		</div>
 		<%-- Main --%>
-		<div style="background-color: #f5f5f5">
-			<div class="container-fluid">
-				<div class="row mt-5 p-5 gx-5">
-					<div class="col-3">
-						<h3>Danh mục</h3>
-						<div class="list-group">
-							<c:forEach items="${ listCate }" var="cate">
-								<button type="button"
-									class="list-group-item list-group-item-action"
-									aria-current="true">${ cate.name }</button>
-							</c:forEach>
-						</div>
-					</div>
-					<div class="col-9">
-						<h3>Sản phẩm</h3>
-						<div class="row row-cols-1 row-cols-md-4 g-4">
-							<c:forEach items="${ data.content }" var="pro">
-								<div class="col">
-									<div class="card h-100">
-										<img src="${ pro.image }" class="card-img-top"
-											alt="${ pro.name }">
-										<div class="card-body">
-											<h5 class="card-title">
-												<a class="text-decoration-none"
-													href="/ASM_JAVA5/user/buy-product/${ pro.id }">${ pro.name }</a>
-											</h5>
-											<p class="card-text text-danger">${ pro.price }VND</p>
-										</div>
-									</div>
-								</div>
-							</c:forEach>
-						</div>
-						<%-- Pagination --%>
-						<div class="row mt-5">
-							<ul class="pagination justify-content-center">
-								<c:forEach var="index" begin="0" end="${ data.totalPages - 1 }">
-									<li class="page-item mx-1"><a
-										class="page-link ${ index==page?'bg-black text-white':'' }"
-										href="/ASM_JAVA5/home/index?page=${ index }">${ index + 1 }</a>
-									</li>
-								</c:forEach>
-							</ul>
-						</div>
-					</div>
+		<div class="row bg-light p-3" style="margin-top: 130px">
+			<h4>Thanh toán đơn hàng</h4>
+		</div>
+		<div class="container">
+			<div class="row bg-light mt-3 p-5">
+				<div class="col-6">
+				<form:form action="/ASM_JAVA5/user/payment" method="post" modelAttribute="order">
+					<h5>Địa chỉ nhận hàng</h5>
+					<form:input path="shippingAddress" class="form-control" />
+					<form:errors path="shippingAddress" />
+				</form:form> 
+				</div>
+				<div class="col-4 offset-2">
+					<img alt="payment" src="/ASM_JAVA5/public/images/undraw_shopping_app_flsj.svg" width="100%" height="auto">
 				</div>
 			</div>
 		</div>

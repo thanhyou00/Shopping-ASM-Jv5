@@ -16,4 +16,6 @@ public interface OrderDetailRepository extends JpaRepository<OrderDetail, Intege
 //			+ "JOIN product ON product.id=order_detail.product_id WHERE orders.account_id=8", nativeQuery = true)
 //	@Query(name = "OrderDetail.getHistory")
 //	List<OrderDetail> getHistory();
+//	@Query(value = "SELECT * FROM order_detail", nativeQuery = true)
+//	List<OrderDetail> getCarts();
 }

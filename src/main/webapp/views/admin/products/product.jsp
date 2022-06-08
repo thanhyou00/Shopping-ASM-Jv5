@@ -223,7 +223,8 @@
 											<td>${ pro.id }</td>
 											<td>${ pro.name }</td>
 											<td>${ pro.price }</td>
-											<td class="dots">${ pro.image }</td>
+											<td><img alt="${ pro.image }" src="${ pro.image }"
+												width="50" height="50"></td>
 											<td>${ pro.brand }</td>
 											<td>${ pro.size }</td>
 											<td>${ pro.available }</td>
@@ -263,6 +264,11 @@
 																			value="${ pro.price }" />
 																	</div>
 																	<div>
+																		<label>Image</label>
+																		<form:input path="image" class="form-control"
+																			value="${ pro.image }" />
+																	</div>
+																	<div>
 																		<label>Brand</label>
 																		<form:input path="brand" class="form-control"
 																			value="${ pro.brand }" />
@@ -284,11 +290,12 @@
 																	</div>
 																	<div>
 																		<label>Category ID</label>
+
 																		<form:select path="categories" class="form-select">
 																			<c:forEach items="${ listCate }" var="cate">
 																				<form:option value="${ cate.id }"
 																					selected="${ cate.id == pro.categories.id ? 'true' : 'false' }">
-																					${ cate.id }
+																					${ cate.id } - selected="${ cate.id == pro.categories.id ? 'true' : 'false' }"
 																				</form:option>
 																			</c:forEach>
 																		</form:select>

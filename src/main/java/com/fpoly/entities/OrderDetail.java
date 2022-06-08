@@ -10,17 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.NamedNativeQuery;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
+@Entity
 @NoArgsConstructor
 @AllArgsConstructor
-@Entity(name = "order_detail")
-@NamedNativeQuery(name = "OrderDetail.getHistory", query = "SELECT * FROM oderDetail", resultClass = OrderDetail.class)
+@Table(name = "order_detail")
+//@NamedNativeQuery(name = "OrderDetail.getHistory", query = "SELECT * FROM oderDetail", resultClass = OrderDetail.class)
 public class OrderDetail implements Serializable {
 
 	private static final long serialVersionUID = 1L;

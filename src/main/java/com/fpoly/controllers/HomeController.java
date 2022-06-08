@@ -33,19 +33,19 @@ public class HomeController {
 	@Autowired
 	private HttpSession session;
 
-	@GetMapping("")
+	@GetMapping("home")
 	public String home(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
-			@RequestParam(name = "size", defaultValue = "6") int size,
+			@RequestParam(name = "size", defaultValue = "12") int size,
 			@ModelAttribute("product") ProductModel product) {
+//		List<Account> a = this.accRepo.getDemo();
+//		System.out.println("check : " + a);
 		List<OrderDetail> listDetail = odetailRepo.findAll();
 		session.setAttribute("countCart", listDetail.size());
 		model.addAttribute("page", page);
 		Pageable pageable = PageRequest.of(page, size);
 		Page<Product> p = this.productRepo.findAll(pageable);
 		List<Categories> listCate = this.cateRepo.findAll();
-		List<Product> listPro = this.productRepo.findAll();
 		model.addAttribute("listCate", listCate);
-		model.addAttribute("listPro", listPro);
 		model.addAttribute("data", p);
 		return "commons/home";
 	}

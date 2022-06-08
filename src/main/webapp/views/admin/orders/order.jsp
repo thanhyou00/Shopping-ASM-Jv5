@@ -144,11 +144,6 @@
 													<form:input path="shippingAddress" class="form-control" />
 												</div>
 												<div>
-													<label>Order date</label>
-													<form:input path="orderDate" type="date"
-														class="form-control" />
-												</div>
-												<div>
 													<label>Order status</label>
 													<form:input path="orderStatus" class="form-control" />
 												</div>
@@ -234,11 +229,6 @@
 																	<label>Shipping address</label>
 																	<form:input path="shippingAddress" class="form-control"
 																		value="${ od.shippingAddress }" />
-																</div>
-																<div style="text-align: left;">
-																	<label>Order date</label>
-																	<form:input path="orderDate" type="date"
-																		class="form-control" value="${ od.orderDate }" />
 																</div>
 																<div style="text-align: left;">
 																	<label>Order status</label>

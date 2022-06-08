@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fpoly.beans.AccountModel;
 import com.fpoly.entities.Account;
 import com.fpoly.repositories.AccountRepository;
+import com.fpoly.utils.EncryptUtil;
 
 @Controller
 public class AccountController {
@@ -33,7 +34,7 @@ public class AccountController {
 		Account acc = new Account();
 		acc.setFullname(model.getFullname());
 		acc.setEmail(model.getEmail());
-		acc.setPassword(model.getPassword());
+		acc.setPassword(EncryptUtil.encrypt(model.getPassword()));
 		acc.setUsername(model.getUsername());
 		acc.setAvatar(model.getAvatar());
 		acc.setAdmin(model.getAdmin());

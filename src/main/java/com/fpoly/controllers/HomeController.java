@@ -2,6 +2,8 @@ package com.fpoly.controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -14,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.fpoly.beans.ProductModel;
 import com.fpoly.entities.Categories;
+import com.fpoly.entities.OrderDetail;
 import com.fpoly.entities.Product;
 import com.fpoly.repositories.CategoryRepository;
+import com.fpoly.repositories.OrderDetailRepository;
 import com.fpoly.repositories.ProductRepository;
 
 @Controller
@@ -24,11 +28,17 @@ public class HomeController {
 	private ProductRepository productRepo;
 	@Autowired
 	private CategoryRepository cateRepo;
+	@Autowired
+	private OrderDetailRepository odetailRepo;
+	@Autowired
+	private HttpSession session;
 
 	@GetMapping("")
 	public String home(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "size", defaultValue = "6") int size,
 			@ModelAttribute("product") ProductModel product) {
+		List<OrderDetail> listDetail = odetailRepo.findAll();
+		session.setAttribute("countCart", listDetail.size());
 		model.addAttribute("page", page);
 		Pageable pageable = PageRequest.of(page, size);
 		Page<Product> p = this.productRepo.findAll(pageable);

@@ -13,7 +13,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<title>Login</title>
+<title>Sign up</title>
 </head>
 <style>
 //
@@ -55,24 +55,37 @@ html *::-webkit-scrollbar-track {
 					class="img-fluid">
 			</div>
 			<div class="col-6 p-5">
-				<form action="/ASM_JAVA5/login" method="post">
-				<div class="text-center mb-5">
-					<img alt="logo" src="/ASM_JAVA5/public/images/logo-ico-small.svg">
-				</div>
-				<h4>Login to continue</h4>
-					<div>
-						<label>Email</label> <input class="form-control" type="email"
-							name="email" />
+				<form:form action="/ASM_JAVA5/signup" method="post"
+					modelAttribute="account">
+					<div class="text-center mb-5">
+						<img alt="logo" src="/ASM_JAVA5/public/images/logo-ico-small.svg">
 					</div>
 					<div>
-						<label>Password</label> 
-						<input class="form-control" type="password" name="password" />
+						<label>Full name</label>
+						<form:input path="fullname" class="form-control" />
+						<form:errors path="fullname" cssClass="text-danger" />
+					</div>
+					<div>
+						<label>Email</label>
+						<form:input path="email" type="email" class="form-control" />
+						<form:errors path="email" cssClass="text-danger" />
+					</div>
+					<div>
+						<label>User name</label>
+						<form:input path="username" class="form-control" />
+						<form:errors path="username" cssClass="text-danger" />
+					</div>
+					<div>
+						<label>Password</label>
+						<form:password path="password" class="form-control" />
+						<form:errors path="password" cssClass="text-danger" />
 					</div>
 					<div class="mt-3">
-						<a href="/ASM_JAVA5/signup" class="text-decoration-none">Or Sign up now</a>
+						<a href="/ASM_JAVA5/login" class="text-decoration-none">
+						Log in now</a>
 					</div>
-					<button class="btn btn-primary w-100 mt-4">Login</button>
-				</form>
+					<button class="btn btn-primary w-100 mt-3">Sign up</button>
+				</form:form>
 			</div>
 		</div>
 	</div>

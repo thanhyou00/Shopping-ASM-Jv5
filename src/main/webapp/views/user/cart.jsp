@@ -106,7 +106,12 @@ html *::-webkit-scrollbar-track {
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
-								class="fa-solid fa-cart-shopping fs-4"></i>
+								class="fa-solid fa-cart-shopping fs-4 position-relative"> 
+								<span
+									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5em">
+										${ countCart } <span class="visually-hidden">unread messages</span>
+								</span>
+							</i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="#"> <i
@@ -141,7 +146,10 @@ html *::-webkit-scrollbar-track {
 						<tbody>
 							<c:forEach items="${ listDetail }" var="detail">
 							<tr>
-								<td>${ detail.product.name }</td>
+								<td>
+								<img alt="${ detail.product.name }" src="${ detail.product.image }" width="50" height="50">
+								${ detail.product.name }
+								</td>
 								<td>${ detail.product.categories.name }</td>
 								<td>${ detail.price }</td>
 								<td>${ detail.quantity }</td>
@@ -155,6 +163,14 @@ html *::-webkit-scrollbar-track {
 							</c:forEach>
 						</tbody>
 					</table>
+					<div class="row">
+						<div class="col-3">
+						<h4>Tổng tiền : <span class="text-danger">${ totalPrice } VND</span> </h4>
+						</div>
+						<div class="col-3 offset-6">
+							<button class="btn btn-primary w-100">Thanh toán</button>
+						</div>
+					</div>
 				</div>
 			</div>
 		</div>

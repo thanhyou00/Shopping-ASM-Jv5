@@ -1,5 +1,6 @@
 package com.fpoly.controllers.admin;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,9 +32,10 @@ public class OrderController {
 	// create
 	@PostMapping("admin/orders/store")
 	public String store(OrderModel model) {
+		LocalDate now = LocalDate.now();
 		Order od = new Order();
 		od.setAccount(model.getAccount());
-		od.setOrderDate(model.getOrderDate());
+		od.setOrderDate(now.toString());
 		od.setOrderStatus(model.getOrderStatus());
 		od.setShippingAddress(model.getShippingAddress());
 		this.orderRepo.save(od);
@@ -57,7 +59,6 @@ public class OrderController {
 	@PostMapping("admin/orders/update/{id}")
 	public String update(@PathVariable("id") Order od, @ModelAttribute("order") OrderModel order) {
 		od.setAccount(order.getAccount());
-		od.setOrderDate(order.getOrderDate());
 		od.setOrderStatus(order.getOrderStatus());
 		od.setShippingAddress(order.getShippingAddress());
 		this.orderRepo.save(od);

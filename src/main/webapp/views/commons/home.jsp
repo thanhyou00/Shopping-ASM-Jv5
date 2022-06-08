@@ -96,12 +96,14 @@ html *::-webkit-scrollbar-track {
 						</a>
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
 								style="top: auto; left: auto;">
+								<c:if test="${ userLogin != null }">
 								<li><a class="dropdown-item" href="/ASM_JAVA5/logout">Logout</a></li>
-								<c:if test="${ userLogin == null }">								
-								<li><a class="dropdown-item" href="/ASM_JAVA5/login">Login</a></li>
+								</c:if>
+								<c:if test="${ userLogin == null }">
+									<li><a class="dropdown-item" href="/ASM_JAVA5/login">Login</a></li>
 								</c:if>
 								<c:if test="${ userLogin.admin == 1 }">
-								<li><a class="dropdown-item" href="/ASM_JAVA5/admin">Admin</a></li>
+									<li><a class="dropdown-item" href="/ASM_JAVA5/admin">Admin</a></li>
 								</c:if>
 							</ul></li>
 						<li class="nav-item"><a class="nav-link text-white"
@@ -110,7 +112,12 @@ html *::-webkit-scrollbar-track {
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
-								class="fa-solid fa-cart-shopping fs-4"></i>
+								class="fa-solid fa-cart-shopping fs-4 position-relative"> 
+								<span
+									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5em">
+										${ countCart } <span class="visually-hidden">unread messages</span>
+								</span>
+							</i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="#"> <i
@@ -223,9 +230,10 @@ html *::-webkit-scrollbar-track {
 											alt="${ pro.name }">
 										<div class="card-body">
 											<h5 class="card-title">
-												<a class="text-decoration-none" href="/ASM_JAVA5/user/buy-product/${ pro.id }">${ pro.name }</a>
+												<a class="text-decoration-none"
+													href="/ASM_JAVA5/user/buy-product/${ pro.id }">${ pro.name }</a>
 											</h5>
-											<p class="card-text text-danger">${ pro.price } VND</p>
+											<p class="card-text text-danger">${ pro.price }VND</p>
 										</div>
 									</div>
 								</div>

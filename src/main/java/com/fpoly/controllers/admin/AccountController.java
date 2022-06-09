@@ -44,12 +44,10 @@ public class AccountController {
 		JsonValidatorResponse jsonValidatorResponse = new JsonValidatorResponse();
 		exchangeValidate.validate(model, result);
 		if (result.hasErrors()) {
-			System.out.println("Lỗi");
 			Map<String, String> errors = result.getFieldErrors().stream()
 					.collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
 			jsonValidatorResponse.setValidated(false);
 			jsonValidatorResponse.setErrorMessages(errors);
-			System.out.println("check : " + errors);
 		} else {
 			Account acc = new Account();
 			acc.setFullname(model.getFullname());

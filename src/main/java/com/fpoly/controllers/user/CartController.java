@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fpoly.beans.HistoryModel;
 import com.fpoly.entities.Account;
 import com.fpoly.entities.Order;
 import com.fpoly.entities.OrderDetail;
@@ -36,11 +37,11 @@ public class CartController {
 
 	@GetMapping("/user/carts")
 	public String index(Model model) {
-//		System.out.println("check : " + this.odetailRepo.getHistory());
 		int total = 0;
-		List<OrderDetail> listDetail = odetailRepo.findAll();
-		for (OrderDetail orderDetail : listDetail) {
-			total += orderDetail.getPrice() * orderDetail.getQuantity();
+		Account account = (Account) session.getAttribute("userLogin");
+		List<HistoryModel> listDetail = this.odetailRepo.getHistory(account.getId());
+		for (HistoryModel orderDetail : listDetail) {
+			total += orderDetail.getProduct().getPrice() * orderDetail.getOrderDetail().getQuantity();
 		}
 		session.setAttribute("totalPrice", total);
 		session.setAttribute("countCart", listDetail.size());
@@ -57,20 +58,20 @@ public class CartController {
 		OrderDetail odetail = new OrderDetail();
 		Account account = (Account) session.getAttribute("userLogin");
 		LocalDate now = LocalDate.now();
-		if (pro != null) {
-			System.out.println("Đã tồn tại : " + product);
-		} else {
-			order.setShippingAddress("HANOI");
-			order.setAccount(account);
-			order.setOrderDate(now.toString());
-			order.setOrderStatus(0);
-			this.oderRepo.save(order);
-			odetail.setQuantity(Integer.valueOf(quantity.substring(1)));
-			odetail.setProduct(pro);
-			odetail.setPrice(price);
-			odetail.setOrder(order);
-			this.odetailRepo.save(odetail);
-		}
+//		if (pro != null) {
+//			System.out.println("Đã tồn tại : " + product);
+//		} else {
+		order.setShippingAddress("HANOI");
+		order.setAccount(account);
+		order.setOrderDate(now.toString());
+		order.setOrderStatus(0);
+		this.oderRepo.save(order);
+		odetail.setQuantity(Integer.valueOf(quantity.substring(1)));
+		odetail.setProduct(pro);
+		odetail.setPrice(price);
+		odetail.setOrder(order);
+		this.odetailRepo.save(odetail);
+//		}
 		return "redirect:/user/carts";
 	}
 

@@ -289,8 +289,6 @@
 																			value="${ pro.descriptions }" />
 																	</div>
 																	<div>
-																		<label>Category ID</label>
-
 																		<form:select path="categories" class="form-select">
 																			<c:forEach items="${ listCate }" var="cate">
 																				<form:option value="${ cate.id }"

@@ -10,7 +10,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import com.fpoly.entities.OrderDetail;
+import com.fpoly.beans.HistoryModel;
+import com.fpoly.entities.Account;
 import com.fpoly.entities.Product;
 import com.fpoly.repositories.OrderDetailRepository;
 
@@ -24,7 +25,8 @@ public class BuyProductController {
 
 	@GetMapping("/user/buy-product/{id}")
 	public String index(@PathVariable("id") Product product, Model model) {
-		List<OrderDetail> listDetail = odetailRepo.findAll();
+		Account account = (Account) session.getAttribute("userLogin");
+		List<HistoryModel> listDetail = this.odetailRepo.getHistory(account.getId());
 		session.setAttribute("countCart", listDetail.size());
 		model.addAttribute("product", product);
 		return "/user/buy-product";

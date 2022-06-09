@@ -20,7 +20,7 @@ public class AuthInterceptor implements HandlerInterceptor {
 			response.sendRedirect("/ASM_JAVA5/login");
 			return false;
 		} else if (account.getAdmin() != 1) {
-			response.sendRedirect("/ASM_JAVA5/");
+			response.sendRedirect("/ASM_JAVA5/home");
 			return false;
 		}
 

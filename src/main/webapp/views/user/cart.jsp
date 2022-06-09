@@ -13,7 +13,7 @@
 <link
 	href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
 	rel="stylesheet">
-<title>My cart</title>
+<title>My carts</title>
 </head>
 <style>
 //
@@ -155,16 +155,16 @@ html *::-webkit-scrollbar-track {
 										src="${ detail.product.image }" width="50" height="50">
 										${ detail.product.name }</td>
 									<td>${ detail.product.categories.name }</td>
-									<td>${ detail.price }</td>
-									<td>${ detail.quantity }</td>
-									<td>${ detail.price*detail.quantity }</td>
+									<td>${ detail.orderDetail.price }</td>
+									<td>${ detail.orderDetail.quantity }</td>
+									<td>${ detail.orderDetail.price*detail.orderDetail.quantity }</td>
 									<td>
 										<button class="btn btn-danger" data-bs-toggle="modal"
-											data-bs-target="#modalDelte_${detail.id}_${detail.order.id}">
+											data-bs-target="#modalDelte_${detail.orderDetail.id}_${detail.order.id}">
 											<i class="fa-solid fa-trash-can"></i>
 										</button> <!-- Modal delete -->
 										<div class="modal fade"
-											id="modalDelte_${detail.id}_${detail.order.id}"
+											id="modalDelte_${detail.orderDetail.id}_${detail.order.id}"
 											data-bs-backdrop="static" data-bs-keyboard="false"
 											tabindex="-1" aria-labelledby="staticBackdropLabel"
 											aria-hidden="true">
@@ -182,7 +182,7 @@ html *::-webkit-scrollbar-track {
 														<p>Warning : You are trying a cart. This cart will be
 															permanently deleted !</p>
 														<a type="button" class="btn  btn-danger w-100"
-															href="/ASM_JAVA5/user/delete/${detail.id}_${detail.order.id}">
+															href="/ASM_JAVA5/user/delete/${detail.orderDetail.id}_${detail.order.id}">
 															Delete
 														</a>
 													</div>
@@ -191,7 +191,7 @@ html *::-webkit-scrollbar-track {
 										</div>
 									</td>
 								</tr>
-							</c:forEach>
+							</c:forEach>					
 						</tbody>
 					</table>
 					<div class="row">

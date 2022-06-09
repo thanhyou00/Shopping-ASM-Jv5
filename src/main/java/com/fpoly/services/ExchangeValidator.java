@@ -13,7 +13,7 @@ public class ExchangeValidator implements Validator {
 	@Override
 	public void validate(Object target, Errors errors) {
 
-		ValidationUtils.rejectIfEmpty(errors, "rdate", "rdate.empty", "Registered date can not be empty!");
+		ValidationUtils.rejectIfEmpty(errors, "username", "username.empty", "Username can not be empty!");
 
 	}
 }

@@ -128,40 +128,41 @@
 										</div>
 										<div class="modal-body">
 											<form:form action="/ASM_JAVA5/admin/accounts/store"
-												method="post" modelAttribute="account" class="needs-validation">
+												method="post" modelAttribute="account"
+												name="account_form">
 												<div>
 													<label>Full name</label>
-													<form:input path="fullname" class="form-control"/>
-													<form:errors path="fullname"/>
+													<form:input path="fullname" class="form-control" name="fullname" />
+													<form:errors path="fullname" cssClass="text-danger" />
 												</div>
 												<div>
 													<label>Email</label>
-													<form:input path="email" type="email" class="form-control" />
-													<form:errors path="email" />
+													<form:input path="email" type="email" class="form-control"  name="email"/>
+													<form:errors path="email" cssClass="text-danger" />
 												</div>
 												<div>
 													<label>User name</label>
-													<form:input path="username" class="form-control" />
-													<form:errors path="username" />
+													<form:input path="username" class="form-control" name="username"/>
+													<form:errors path="username" cssClass="text-danger" />
 												</div>
 												<div>
 													<label>Password</label>
-													<form:password path="password" class="form-control" />
-													<form:errors path="password" />
+													<form:password path="password" class="form-control" name="password"/>
+													<form:errors path="password" cssClass="text-danger" />
 												</div>
 												<div>
 													<label>Photo</label>
-													<form:input path="avatar" class="form-control" />
-													<form:errors path="avatar" />
+													<form:input path="avatar" class="form-control" name="avatar" />
+													<form:errors path="avatar" cssClass="text-danger" />
 												</div>
 												<div>
 													<label>Admin</label>
-													<form:select path="admin" class="form-select">
+													<form:select path="admin" class="form-select" name="admin">
 														<form:option value="0">Member</form:option>
 														<form:option value="1">Admin</form:option>
 													</form:select>
 												</div>
-												<button class="btn btn-primary w-100 mt-3" id="liveToastBtn">Add</button>
+												<button class="btn btn-primary w-100 mt-3" id="liveToastBtn" type="submit">Add</button>
 												<div class="position-fixed top-0 end-0 p-5"
 													style="z-index: 11">
 													<div style="background-color: #2ecc71" id="liveToast"
@@ -255,8 +256,10 @@
 																<div style="text-align: left;">
 																	<label>Admin</label>
 																	<form:select path="admin" class="form-select">
-																		<form:option value="0" selected="${ acc.admin == 0 ? 'true' : 'false' }">Member</form:option>
-																		<form:option value="1" selected="${ acc.admin == 1 ? 'true' : 'false' }">Admin</form:option>
+																		<form:option value="0"
+																			selected="${ acc.admin == 0 ? 'true' : 'false' }">Member</form:option>
+																		<form:option value="1"
+																			selected="${ acc.admin == 1 ? 'true' : 'false' }">Admin</form:option>
 																	</form:select>
 																</div>
 																<button class="btn btn-primary w-100 mt-3"
@@ -318,7 +321,7 @@
 
 
 
-						<div class="row">
+					<div class="row">
 							<ul class="pagination justify-content-center">
 								<c:forEach var="index" begin="0" end="${ data.totalPages - 1 }">
 									<li class="page-item mx-1"><a
@@ -337,12 +340,46 @@
 		var option = {
 			animation : true,
 			delay : 5000
-		}
+		};
 		document.getElementById("liveToastBtn").onclick = function() {
 			var myAlert = document.getElementById("liveToast");
 			var bsAlert = new bootstrap.Toast(myAlert, option);
 			bsAlert.show();
-		}
+		};
+
+		$(function() {
+			/*  Submit form using Ajax */
+			$('button[type=submit]').click(
+					function(e) {
+						//Prevent default submission of form
+						e.preventDefault();
+						//Remove all errors
+						$('input').next().remove();
+						$.post({
+							url : 'save',
+							data : $('form[name=account_form]').serialize(),
+							success : function(res) {
+								if (res.isValidated) {
+									// success
+									$('input').closest('div.form-control')
+											.removeClass('has-error');
+								} else {
+									//Set error messages
+									$.each(res.errorMessages, function(key,
+											value) {
+										$('input[name=' + key + ']').after(
+												'<span class="help-block">'
+														+ value + '</span>');
+										$('input[name=' + key + ']').closest(
+												'div.form-control').addClass(
+												'has-error');
+									});
+								}
+							}
+						})
+					});
+
+		});
 	</script>
 	<script
 		src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>

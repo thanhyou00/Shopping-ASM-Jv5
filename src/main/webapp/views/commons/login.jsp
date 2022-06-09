@@ -55,24 +55,26 @@ html *::-webkit-scrollbar-track {
 					class="img-fluid">
 			</div>
 			<div class="col-6 p-5">
-				<form action="/ASM_JAVA5/login" method="post">
+				<form:form action="/ASM_JAVA5/login" method="post" modelAttribute="login">
 				<div class="text-center mb-5">
 					<img alt="logo" src="/ASM_JAVA5/public/images/logo-ico-small.svg">
 				</div>
 				<h4>Login to continue</h4>
 					<div>
-						<label>Email</label> <input class="form-control" type="email"
+						<label>Email</label> <form:input path="email" class="form-control" type="email"
 							name="email" />
+							<form:errors path="email" cssClass="text-danger" />
 					</div>
 					<div>
 						<label>Password</label> 
-						<input class="form-control" type="password" name="password" />
+						<form:input path="password" class="form-control" type="password" name="password" />
+						<form:errors path="password" cssClass="text-danger" />
 					</div>
 					<div class="mt-3">
 						<a href="/ASM_JAVA5/signup" class="text-decoration-none">Or Sign up now</a>
 					</div>
 					<button class="btn btn-primary w-100 mt-4">Login</button>
-				</form>
+				</form:form>
 			</div>
 		</div>
 	</div>

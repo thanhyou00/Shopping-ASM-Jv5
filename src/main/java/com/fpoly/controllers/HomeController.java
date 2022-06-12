@@ -14,9 +14,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import com.fpoly.beans.HistoryModel;
 import com.fpoly.beans.ProductModel;
+import com.fpoly.entities.Account;
 import com.fpoly.entities.Categories;
-import com.fpoly.entities.OrderDetail;
 import com.fpoly.entities.Product;
 import com.fpoly.repositories.CategoryRepository;
 import com.fpoly.repositories.OrderDetailRepository;
@@ -37,9 +38,8 @@ public class HomeController {
 	public String home(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "size", defaultValue = "12") int size,
 			@ModelAttribute("product") ProductModel product) {
-//		List<Account> a = this.accRepo.getDemo();
-//		System.out.println("check : " + a);
-		List<OrderDetail> listDetail = odetailRepo.findAll();
+		Account account = (Account) session.getAttribute("userLogin");
+		List<HistoryModel> listDetail = this.odetailRepo.getHistory(account.getId());
 		session.setAttribute("countCart", listDetail.size());
 		model.addAttribute("page", page);
 		Pageable pageable = PageRequest.of(page, size);

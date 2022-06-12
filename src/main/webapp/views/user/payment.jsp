@@ -111,11 +111,13 @@ html *::-webkit-scrollbar-track {
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
-								class="fa-solid fa-cart-shopping fs-4 position-relative"> <span
-									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-									style="font-size: 0.5em"> ${ countCart } <span
-										class="visually-hidden">unread messages</span>
+								class="fa-solid fa-cart-shopping fs-4 position-relative"> 
+								<c:if test="${ countCart >0}">								
+								<span
+									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5em">
+										${ countCart } <span class="visually-hidden">unread messages</span>
 								</span>
+								</c:if>
 							</i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
@@ -137,10 +139,12 @@ html *::-webkit-scrollbar-track {
 		<div class="container">
 			<div class="row bg-light mt-3 p-5">
 				<div class="col-6">
-				<form:form action="/ASM_JAVA5/user/payment" method="post" modelAttribute="order">
+				<form:form action="/ASM_JAVA5/user/payment-verify" method="post" modelAttribute="payment">
 					<h5>Địa chỉ nhận hàng</h5>
 					<form:input path="shippingAddress" class="form-control" />
-					<form:errors path="shippingAddress" />
+					<form:errors path="shippingAddress" cssClass="text-danger" />
+					
+					<button class="btn btn-danger w-100 mt-5">Xác nhận thanh toán</button>
 				</form:form> 
 				</div>
 				<div class="col-4 offset-2">

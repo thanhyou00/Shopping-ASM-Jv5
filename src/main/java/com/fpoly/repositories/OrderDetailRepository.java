@@ -14,6 +14,6 @@ import com.fpoly.entities.OrderDetail;
 public interface OrderDetailRepository extends JpaRepository<OrderDetail, Integer> {
 
 	@Query(value = "SELECT new HistoryModel(p, od, o ) FROM OrderDetail od "
-			+ "INNER JOIN od.order o INNER JOIN od.product p WHERE o.account.id =:id")
+			+ "INNER JOIN od.order o INNER JOIN od.product p WHERE o.orderStatus = 0 AND o.account.id =:id")
 	public List<HistoryModel> getHistory(@Param("id") int id);
 }

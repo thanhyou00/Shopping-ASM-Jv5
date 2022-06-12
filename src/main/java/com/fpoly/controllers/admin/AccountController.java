@@ -60,7 +60,6 @@ public class AccountController {
 			jsonValidatorResponse.setValidatioObject(model);
 			this.accountRepo.save(acc);
 		}
-//		return "admin/accounts/account";
 		return "admin/accounts/account";
 	}
 

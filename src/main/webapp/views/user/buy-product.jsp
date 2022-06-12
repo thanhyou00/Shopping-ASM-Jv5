@@ -113,10 +113,12 @@ html *::-webkit-scrollbar-track {
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
 								class="fa-solid fa-cart-shopping fs-4 position-relative"> 
+								<c:if test="${ countCart >0}">								
 								<span
 									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5em">
 										${ countCart } <span class="visually-hidden">unread messages</span>
 								</span>
+								</c:if>
 							</i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"

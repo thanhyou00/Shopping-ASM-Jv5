@@ -111,11 +111,13 @@ html *::-webkit-scrollbar-track {
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
 							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
-								class="fa-solid fa-cart-shopping fs-4 position-relative"> <span
-									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
-									style="font-size: 0.5em"> ${ countCart } <span
-										class="visually-hidden">unread messages</span>
+								class="fa-solid fa-cart-shopping fs-4 position-relative"> 
+								<c:if test="${ countCart >0}">								
+								<span
+									class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" style="font-size: 0.5em">
+										${ countCart } <span class="visually-hidden">unread messages</span>
 								</span>
+								</c:if>
 							</i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
@@ -182,7 +184,7 @@ html *::-webkit-scrollbar-track {
 														<p>Warning : You are trying a cart. This cart will be
 															permanently deleted !</p>
 														<a type="button" class="btn  btn-danger w-100"
-															href="/ASM_JAVA5/user/delete/${detail.orderDetail.id}_${detail.order.id}">
+															href="/ASM_JAVA5/user/delete/${detail.order.id}">
 															Delete
 														</a>
 													</div>
@@ -195,6 +197,7 @@ html *::-webkit-scrollbar-track {
 						</tbody>
 					</table>
 					<div class="row">
+					<c:if test="${ countCart > 0}">
 						<div class="col-3">
 							<h4>
 								Tổng tiền : <span class="text-danger">${ totalPrice } VND</span>
@@ -204,6 +207,12 @@ html *::-webkit-scrollbar-track {
 							<a class="btn btn-primary w-100" href="/ASM_JAVA5/user/payment">Thanh
 								toán</a>
 						</div>
+						</c:if>
+						<c:if test="${ countCart ==0 }">
+							<div class="col-12 text-center">
+								<p class="alert alert-info">Danh sách đơn hàng trống !</p>
+							</div>
+						</c:if>
 					</div>
 				</div>
 			</div>

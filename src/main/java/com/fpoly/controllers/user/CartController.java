@@ -75,10 +75,10 @@ public class CartController {
 		return "redirect:/user/carts";
 	}
 
-	@GetMapping("user/delete/{idDetail}/{idOrder}")
-	public String delete(@PathVariable("idDetail") OrderDetail odetail, @PathVariable("idOrder") Order order) {
-		this.odetailRepo.delete(odetail);
-//		this.oderRepo.delete(order);
+	@GetMapping("user/delete/{id}")
+	public String delete(@PathVariable("id") Order order) {
+		order.setOrderStatus(2);
+		this.oderRepo.save(order);
 		return "redirect:/user/carts";
 	}
 

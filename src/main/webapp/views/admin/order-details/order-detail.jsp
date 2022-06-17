@@ -33,8 +33,7 @@
 				style="background-color: #0a3d62; height: 100vh">
 				<div class="d-flex justify-content-center">
 					<a class="navbar-brand" href="#"> <img alt="logo"
-						src="/public/images/logo-ico.svg" width="100"
-						height="100">
+						src="/public/images/logo-ico.svg" width="100" height="100">
 					</a>
 				</div>
 				<hr>
@@ -116,7 +115,8 @@
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb mb-0">
 							<li class="breadcrumb-item"><a href="/admin">Admin</a></li>
-							<li class="breadcrumb-item active" aria-current="page">Order details</li>
+							<li class="breadcrumb-item active" aria-current="page">Order
+								details</li>
 						</ol>
 					</nav>
 				</div>
@@ -138,8 +138,8 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form:form action="/admin/order-details/store"
-												method="post" modelAttribute="order-detail">
+											<form:form action="/admin/order-details/store" method="post"
+												modelAttribute="order-detail">
 												<div>
 													<label>Order ID</label>
 													<form:select path="order" class="form-select">
@@ -207,7 +207,78 @@
 									<c:forEach items="${ data.content }" var="odetail">
 										<tr>
 											<td>${ odetail.id }</td>
-											<td>${ odetail.order.id }</td>
+											<td>
+												<!-- Button trigger modal -->
+												<button type="button" class="btn btn-warning"
+													data-bs-toggle="modal"
+													data-bs-target="#modal_${ odetail.order.id }">Xem
+													chi tiết ${ odetail.order.id }</button> <!-- Modal -->
+												<div class="modal fade" id="modal_${ odetail.order.id }"
+													data-bs-backdrop="static" data-bs-keyboard="false"
+													tabindex="-1" aria-labelledby="staticBackdropLabel"
+													aria-hidden="true">
+													<div class="modal-dialog modal-lg">
+														<div class="modal-content">
+															<div class="modal-header">
+																<h5 class="modal-title" id="staticBackdropLabel">
+																	Order detail product</h5>
+																<button type="button" class="btn-close"
+																	data-bs-dismiss="modal" aria-label="Close"></button>
+															</div>
+															<div class="modal-body row p-5">
+																<div class="col-12">
+																	<img alt="${ odetail.product.name }"
+																		src="${ odetail.product.image }" width="100"
+																		height="100">
+																	<p>${ odetail.product.name }</p>
+																</div>
+																<div class="col-4">
+																	<h5>Tên khách hàng</h5>
+																	<p>${ odetail.order.account.fullname }</p>
+																</div>
+																<div class="col-4">
+																	<h5>Số lượng</h5>
+																	<p>x ${ odetail.quantity }</p>
+																</div>
+																<div class="col-4">
+																	<h5>Đơn giá</h5>
+																	<p>${ odetail.price }</p>
+																</div>
+																<div class="col-4">
+																	<h5>Thành tiền</h5>
+																	<p class="text-danger">${ odetail.quantity*odetail.price }
+																		VND</p>
+																</div>
+																<div class="col-4">
+																	<h5>Địa chỉ nhận hàng</h5>
+																	<p>${ odetail.order.shippingAddress }</p>
+																</div>
+																<div class="col-4">
+																	<h5>Trạng thái đơn hàng</h5>
+																	<c:if test="${ odetail.order.orderStatus == 1}">
+																		<p class="bg-success text-white p-2">Đã thanh toán
+																		</p>
+																	</c:if>
+																	<c:if test="${ odetail.order.orderStatus == 0}">
+																		<p class="bg-secondary text-white p-2">Chưa thanh
+																			toán</p>
+																	</c:if>
+																	<c:if test="${ odetail.order.orderStatus == 2}">
+																		<p class="bg-danger text-white p-2">Đã hủy</p>
+																	</c:if>
+																</div>
+																<c:if test="${ odetail.order.orderStatus == 0}">
+																	<div class="col-12 mt-2">
+																		<a href="/admin/payment-verify/${ odetail.order.id }"
+																			type="button" class="btn btn-primary w-100"> Xác
+																			nhận đơn hàng</a>
+																	</div>
+																</c:if>
+															</div>
+														</div>
+													</div>
+												</div>
+											</td>
 											<td>${ odetail.product.id }</td>
 											<td>${ odetail.price }</td>
 											<td>${ odetail.quantity }</td>
@@ -238,9 +309,8 @@
 																		<label>Order ID</label>
 																		<form:select path="order" class="form-select">
 																			<c:forEach items="${ listOrder }" var="od">
-																				<form:option value="${ od.id }" 
-																				selected="${ od.id == odetail.order.id ? 'true' : 'false' }"
-																				>
+																				<form:option value="${ od.id }"
+																					selected="${ od.id == odetail.order.id ? 'true' : 'false' }">
 																				${ od.id }
 																			</form:option>
 																			</c:forEach>
@@ -251,8 +321,7 @@
 																		<form:select path="product" class="form-select">
 																			<c:forEach items="${ listProduct }" var="pro">
 																				<form:option value="${ pro.id }"
-																				selected="${ pro.id == odetail.product.id ? 'true' : 'false' }"
-																				>
+																					selected="${ pro.id == odetail.product.id ? 'true' : 'false' }">
 																			${ pro.id }
 																		</form:option>
 																			</c:forEach>
@@ -260,11 +329,13 @@
 																	</div>
 																	<div style="text-align: left;">
 																		<label>Price</label>
-																		<form:input path="price" class="form-control" value="${ odetail.price }" />
+																		<form:input path="price" class="form-control"
+																			value="${ odetail.price }" />
 																	</div>
 																	<div style="text-align: left;">
 																		<label>Quantity</label>
-																		<form:input path="quantity" class="form-control" value="${ odetail.quantity }" />
+																		<form:input path="quantity" class="form-control"
+																			value="${ odetail.quantity }" />
 																	</div>
 																	<button class="btn btn-primary w-100 mt-3"
 																		id="liveToastBtn">Update</button>
@@ -307,8 +378,8 @@
 																</button>
 															</div>
 															<div class="modal-body" style="background-color: #fff2df">
-																<p>Warning : You are trying a order detail. This order detail
-																	will be permanently deleted !</p>
+																<p>Warning : You are trying a order detail. This
+																	order detail will be permanently deleted !</p>
 																<a role="button"
 																	href="/admin/order-details/delete/${ pro.id }"
 																	class="btn btn-danger w-100 "> Delete </a>

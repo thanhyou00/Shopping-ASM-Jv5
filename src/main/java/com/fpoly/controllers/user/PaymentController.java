@@ -12,6 +12,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import com.fpoly.beans.HistoryModel;
@@ -66,4 +67,19 @@ public class PaymentController {
 			return "redirect:/home";
 		}
 	}
+	
+	@GetMapping("/admin/payment-verify/{id}")
+	public String AdminVerify(@PathVariable("id") Order order) {
+		order.setOrderStatus(1);
+		this.oderRepo.save(order);
+		return "redirect:/admin/order-details/index";
+	}
 }
+
+
+
+
+
+
+
+

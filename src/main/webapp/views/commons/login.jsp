@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="/ASM_JAVA5/public/images/logo-ico-small.svg" />
+<link rel="icon" href="/public/images/logo-ico-small.svg" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 <!-- Bootstrap CSS -->
@@ -51,29 +51,31 @@ html *::-webkit-scrollbar-track {
 	<div class="container">
 		<div class="row" style="height: 100vh">
 			<div class="col-6 p-5">
-				<br /> <img alt="banner" src="/ASM_JAVA5/public/images/login.svg"
+				<br /> <img alt="banner" src="/public/images/login.svg"
 					class="img-fluid">
 			</div>
 			<div class="col-6 p-5">
-				<form:form action="/ASM_JAVA5/login" method="post" modelAttribute="login">
-				<div class="text-center mb-5">
-					<img alt="logo" src="/ASM_JAVA5/public/images/logo-ico-small.svg">
-				</div>
-				<h4>Login to continue</h4>
+				<form:form action="/login" method="post" modelAttribute="login">
+					<div class="text-center mb-5">
+						<img alt="logo" src="/public/images/logo-ico-small.svg">
+					</div>
+					<h4>Login to continue</h4>
 					<div>
-						<label>Email</label> <form:input path="email" class="form-control" type="email"
+						<label>Email</label>
+						<form:input path="email" class="form-control" type="email"
 							name="email" />
-							<form:errors path="email" cssClass="text-danger" />
+						<form:errors path="email" cssClass="text-danger" />
 					</div>
 					<div>
-						<label>Password</label> 
-						<form:input path="password" class="form-control" type="password" name="password" />
+						<label>Password</label>
+						<form:input path="password" class="form-control" type="password"
+							name="password" />
 						<form:errors path="password" cssClass="text-danger" />
 					</div>
 					<div class="mt-3">
-						<a href="/ASM_JAVA5/signup" class="text-decoration-none">Or Sign up now</a>
+						<a href="/signup" class="text-decoration-none">Or Sign up now</a>
 					</div>
-					<button class="btn btn-primary w-100 mt-4">Login</button>
+					<button class="btn btn-primary w-100 mt-4" type="submit">Login</button>
 				</form:form>
 			</div>
 		</div>

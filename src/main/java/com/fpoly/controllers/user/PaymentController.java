@@ -1,7 +1,9 @@
 package com.fpoly.controllers.user;
 
+import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
@@ -16,6 +18,7 @@ import com.fpoly.beans.HistoryModel;
 import com.fpoly.beans.PaymentModel;
 import com.fpoly.entities.Account;
 import com.fpoly.entities.Order;
+import com.fpoly.repositories.AccountRepository;
 import com.fpoly.repositories.OrderDetailRepository;
 import com.fpoly.repositories.OrderRepository;
 
@@ -28,10 +31,15 @@ public class PaymentController {
 	@Autowired
 	private HttpSession session;
 	private Order ord = null;
+	@Autowired
+	private AccountRepository accRepo;
+	@Autowired
+	private HttpServletRequest request;
 
 	@GetMapping("/user/payment")
 	public String index(@ModelAttribute("payment") PaymentModel payment) {
-		Account account = (Account) session.getAttribute("userLogin");
+		Principal principal = request.getUserPrincipal();
+		Account account = this.accRepo.findByEmailEquals(principal.getName());
 		List<HistoryModel> listDetail = this.odetailRepo.getHistory(account.getId());
 		session.setAttribute("countCart", listDetail.size());
 		return "/user/payment";
@@ -44,7 +52,8 @@ public class PaymentController {
 			System.out.println("Errorsss");
 			return "/user/payment";
 		} else {
-			Account account = (Account) session.getAttribute("userLogin");
+			Principal principal = request.getUserPrincipal();
+			Account account = this.accRepo.findByEmailEquals(principal.getName());
 			List<HistoryModel> listDetail = this.odetailRepo.getHistory(account.getId());
 			for (HistoryModel historyModel : listDetail) {
 				ord = this.oderRepo.getById(historyModel.getOrder().getId());

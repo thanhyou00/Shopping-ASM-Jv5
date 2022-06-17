@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="/ASM_JAVA5/public/images/logo-ico.svg" />
+<link rel="icon" href="/public/images/logo-ico.svg" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 <!-- Bootstrap CSS -->
@@ -33,26 +33,26 @@
 				style="background-color: #0a3d62; height: 100vh">
 				<div class="d-flex justify-content-center">
 					<a class="navbar-brand" href="#"> <img alt="logo"
-						src="/ASM_JAVA5/public/images/logo-ico.svg" width="100"
+						src="/public/images/logo-ico.svg" width="100"
 						height="100">
 					</a>
 				</div>
 				<hr>
 				<div class="list-group">
 					<p class="text-secondary fw-bold">Components</p>
-					<a href="/ASM_JAVA5/admin"
+					<a href="/admin"
 						class="list-group-item list-group-item-action border-0"
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-gauge-high fs-6 px-1"></i></span> Dash board
-					</a> <a href="/ASM_JAVA5/admin/accounts/index"
+					</a> <a href="/admin/accounts/index"
 						class="list-group-item list-group-item-action border-0"
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-user fs-6 px-1"></i></span> Accounts
-					</a> <a href="/ASM_JAVA5/admin/products/index"
+					</a> <a href="/admin/products/index"
 						class="list-group-item list-group-item-action border-0 "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-cart-shopping fs-6 px-1"></i></span> Products
-					</a> <a href="/ASM_JAVA5/admin/categories/index"
+					</a> <a href="/admin/categories/index"
 						class="list-group-item list-group-item-action border-0 "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-share-nodes fs-6 px-1"></i></span> Categories
@@ -66,11 +66,11 @@
 						style="background-color: #0a3d62; color: #dcdde1"> <span>
 							<i class="fa-solid fa-arrow-down-9-1 fs-6 px-1"></i>
 					</span> Sale off
-					</a> <a href="/ASM_JAVA5/admin/orders/index"
+					</a> <a href="/admin/orders/index"
 						class="list-group-item list-group-item-action border-0  "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-truck-fast fs-6 px-1"></i></span> Orders
-					</a> <a href="/ASM_JAVA5/admin/order-details/index"
+					</a> <a href="/admin/order-details/index"
 						class="list-group-item list-group-item-action border-0  "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-calendar-check fs-6 px-1"></i></span> Order details
@@ -115,7 +115,7 @@
 				<div class="bg-light p-3">
 					<nav aria-label="breadcrumb">
 						<ol class="breadcrumb mb-0">
-							<li class="breadcrumb-item"><a href="/ASM_JAVA5/admin">Admin</a></li>
+							<li class="breadcrumb-item"><a href="/admin">Admin</a></li>
 							<li class="breadcrumb-item active" aria-current="page">Products</li>
 						</ol>
 					</nav>
@@ -138,7 +138,7 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form:form action="/ASM_JAVA5/admin/products/store"
+											<form:form action="/admin/products/store"
 												method="post" modelAttribute="product">
 												<div>
 													<label>Name</label>
@@ -251,7 +251,7 @@
 															</div>
 															<div class="modal-body">
 																<form:form
-																	action="/ASM_JAVA5/admin/products/update/${ pro.id }"
+																	action="/admin/products/update/${ pro.id }"
 																	method="post" modelAttribute="product">
 																	<div>
 																		<label>Name</label>
@@ -342,7 +342,7 @@
 																<p>Warning : You are trying a product. This product
 																	will be permanently deleted !</p>
 																<a role="button"
-																	href="/ASM_JAVA5/admin/products/delete/${ pro.id }"
+																	href="/admin/products/delete/${ pro.id }"
 																	class="btn btn-danger w-100 "> Delete </a>
 															</div>
 														</div>
@@ -361,7 +361,7 @@
 								<c:forEach var="index" begin="0" end="${ data.totalPages - 1 }">
 									<li class="page-item mx-1"><a
 										class="page-link ${ index==page?'bg-black text-white':'' }"
-										href="/ASM_JAVA5/admin/products/index?page=${ index }">${ index + 1 }</a>
+										href="/admin/products/index?page=${ index }">${ index + 1 }</a>
 									</li>
 								</c:forEach>
 							</ul>

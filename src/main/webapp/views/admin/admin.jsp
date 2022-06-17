@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="/ASM_JAVA5/public/images/logo-ico.svg" />
+<link rel="icon" href="/public/images/logo-ico.svg" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 <!-- Bootstrap CSS -->
@@ -20,7 +20,7 @@
 				style="background-color: #0a3d62; height: 100vh">
 				<div class="d-flex justify-content-center">
 					<a class="navbar-brand" href="#"> <img alt="logo"
-						src="/ASM_JAVA5/public/images/logo-ico.svg" width="100"
+						src="/public/images/logo-ico.svg" width="100"
 						height="100">
 					</a>
 				</div>
@@ -30,15 +30,15 @@
 					<a href="#" class="list-group-item list-group-item-action border-0"
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-gauge-high fs-6 px-1"></i></span> Dash board
-					</a> <a href="/ASM_JAVA5/admin/accounts/index"
+					</a> <a href="/admin/accounts/index"
 						class="list-group-item list-group-item-action border-0"
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-user fs-6 px-1"></i></span> Accounts
-					</a> <a href="/ASM_JAVA5/admin/products/index"
+					</a> <a href="/admin/products/index"
 						class="list-group-item list-group-item-action border-0 "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-cart-shopping fs-6 px-1"></i></span> Products
-					</a> <a href="/ASM_JAVA5/admin/categories/index"
+					</a> <a href="/admin/categories/index"
 						class="list-group-item list-group-item-action border-0 "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-share-nodes fs-6 px-1"></i></span> Categories
@@ -52,13 +52,11 @@
 						style="background-color: #0a3d62; color: #dcdde1"> <span>
 							<i class="fa-solid fa-arrow-down-9-1 fs-6 px-1"></i>
 					</span> Sale off
-					</a> 
-					<a href="/ASM_JAVA5/admin/orders/index"
+					</a> <a href="/admin/orders/index"
 						class="list-group-item list-group-item-action border-0  "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-truck-fast fs-6 px-1"></i></span> Orders
-					</a>
-					<a href="/ASM_JAVA5/admin/order-details/index"
+					</a> <a href="/admin/order-details/index"
 						class="list-group-item list-group-item-action border-0  "
 						style="background-color: #0a3d62; color: #dcdde1"> <span><i
 							class="fa-solid fa-calendar-check fs-6 px-1"></i></span> Order details
@@ -89,7 +87,7 @@
 						<div class="collapse navbar-collapse" id="navbarText">
 							<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 								<li class="nav-item"><a class="nav-link active"
-									aria-current="page" href="/ASM_JAVA5/home">Home</a></li>
+									aria-current="page" href="/home">Home</a></li>
 								<li class="nav-item"><a class="nav-link" href="#">Features</a>
 								</li>
 								<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
@@ -100,6 +98,48 @@
 						</div>
 					</div>
 				</nav>
+				<div class="row m-0 p-5 g-3">
+					<div class="col-3">
+						<div class="card bg-info rounded">
+							<div class="card-header text-white">
+								Total account
+							</div>
+							<div class="card-body">
+								<p class="text-white">${ totalAcc }</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="card bg-primary rounded">
+							<div class="card-header text-white">
+								Total product
+							</div>
+							<div class="card-body">
+								<p class="text-white">${ totalPro }</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="card bg-success rounded">
+							<div class="card-header text-white">
+								Total order
+							</div>
+							<div class="card-body">
+								<p class="text-white">${ totalOrder }</p>
+							</div>
+						</div>
+					</div>
+					<div class="col-3">
+						<div class="card bg-danger rounded">
+							<div class="card-header text-white">
+								Total payment
+							</div>
+							<div class="card-body">
+								<p class="text-white">${ totalPayment }</p>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

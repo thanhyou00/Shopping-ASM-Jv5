@@ -6,7 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="/ASM_JAVA5/public/images/logo-ico-small.svg" />
+<link rel="icon" href="/public/images/logo-ico-small.svg" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 <!-- Bootstrap CSS -->
@@ -51,14 +51,14 @@ html *::-webkit-scrollbar-track {
 	<div class="container">
 		<div class="row" style="height: 100vh">
 			<div class="col-6 p-5">
-				<br /> <img alt="banner" src="/ASM_JAVA5/public/images/login.svg"
+				<br /> <img alt="banner" src="/public/images/login.svg"
 					class="img-fluid">
 			</div>
 			<div class="col-6 p-5">
-				<form:form action="/ASM_JAVA5/signup" method="post"
+				<form:form action="/signup" method="post"
 					modelAttribute="account">
 					<div class="text-center mb-5">
-						<img alt="logo" src="/ASM_JAVA5/public/images/logo-ico-small.svg">
+						<img alt="logo" src="/public/images/logo-ico-small.svg">
 					</div>
 					<div>
 						<label>Full name</label>
@@ -81,7 +81,7 @@ html *::-webkit-scrollbar-track {
 						<form:errors path="password" cssClass="text-danger" />
 					</div>
 					<div class="mt-3">
-						<a href="/ASM_JAVA5/login" class="text-decoration-none">
+						<a href="/login" class="text-decoration-none">
 						Log in now</a>
 					</div>
 					<button class="btn btn-primary w-100 mt-3">Sign up</button>

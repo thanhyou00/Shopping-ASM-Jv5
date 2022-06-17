@@ -1,7 +1,9 @@
 package com.fpoly.controllers;
 
+import java.security.Principal;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import com.fpoly.beans.ProductModel;
 import com.fpoly.entities.Account;
 import com.fpoly.entities.Categories;
 import com.fpoly.entities.Product;
+import com.fpoly.repositories.AccountRepository;
 import com.fpoly.repositories.CategoryRepository;
 import com.fpoly.repositories.OrderDetailRepository;
 import com.fpoly.repositories.ProductRepository;
@@ -33,18 +36,26 @@ public class HomeController {
 	private OrderDetailRepository odetailRepo;
 	@Autowired
 	private HttpSession session;
+	@Autowired
+	private AccountRepository accRepo;
+	@Autowired
+	private HttpServletRequest request;
 
 	@GetMapping("home")
 	public String home(Model model, @RequestParam(name = "page", defaultValue = "0") int page,
 			@RequestParam(name = "size", defaultValue = "12") int size,
 			@ModelAttribute("product") ProductModel product) {
-		Account account = (Account) session.getAttribute("userLogin");
-		List<HistoryModel> listDetail = this.odetailRepo.getHistory(account.getId());
-		session.setAttribute("countCart", listDetail.size());
+		Principal principal = request.getUserPrincipal();
+		Account account = this.accRepo.findByEmailEquals(principal.getName());
+		if (account != null) {
+			List<HistoryModel> listDetail = this.odetailRepo.getHistory(account.getId());
+			session.setAttribute("countCart", listDetail.size());
+		}
 		model.addAttribute("page", page);
 		Pageable pageable = PageRequest.of(page, size);
 		Page<Product> p = this.productRepo.findAll(pageable);
 		List<Categories> listCate = this.cateRepo.findAll();
+
 		model.addAttribute("listCate", listCate);
 		model.addAttribute("data", p);
 		return "commons/home";

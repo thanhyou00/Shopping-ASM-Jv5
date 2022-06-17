@@ -48,6 +48,7 @@ public class AccountController {
 					.collect(Collectors.toMap(FieldError::getField, FieldError::getDefaultMessage));
 			jsonValidatorResponse.setValidated(false);
 			jsonValidatorResponse.setErrorMessages(errors);
+			return "admin/accounts/account";
 		} else {
 			Account acc = new Account();
 			acc.setFullname(model.getFullname());
@@ -59,8 +60,8 @@ public class AccountController {
 			jsonValidatorResponse.setValidated(true);
 			jsonValidatorResponse.setValidatioObject(model);
 			this.accountRepo.save(acc);
+			return "redirect:/admin/accounts/index";
 		}
-		return "admin/accounts/account";
 	}
 
 	// read

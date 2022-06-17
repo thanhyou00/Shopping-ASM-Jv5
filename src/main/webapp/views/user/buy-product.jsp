@@ -2,11 +2,13 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="icon" href="/ASM_JAVA5/public/images/logo-ico-small.svg" />
+<link rel="icon" href="/public/images/logo-ico-small.svg" />
 <link rel="stylesheet"
 	href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" />
 <!-- Bootstrap CSS -->
@@ -53,7 +55,7 @@ html *::-webkit-scrollbar-track {
 			style="background-color: #0a3d62">
 			<div class="container-fluid">
 				<a class="navbar-brand" href="#"> <img alt="logo"
-					src="/ASM_JAVA5/public/images/logo-ico.svg" width="80" height="80">
+					src="/public/images/logo-ico.svg" width="80" height="80">
 				</a>
 				<button class="navbar-toggler " type="button"
 					data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
@@ -64,7 +66,7 @@ html *::-webkit-scrollbar-track {
 				<div class="collapse navbar-collapse" id="navbarNavDropdown">
 					<ul class="navbar-nav">
 						<li class="nav-item"><a class="nav-link text-white"
-							aria-current="page" href="/ASM_JAVA5/home">Home</a></li>
+							aria-current="page" href="/home">Home</a></li>
 						<li class="nav-item"><a class="nav-link text-white" href="#">Sale off</a>
 						</li>
 						<li class="nav-item"><a class="nav-link text-white" href="#">Contact us</a>
@@ -95,15 +97,15 @@ html *::-webkit-scrollbar-track {
 						</a>
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
 								style="top: auto; left: auto;">
-								<c:if test="${ userLogin != null }">
-								<li><a class="dropdown-item" href="/ASM_JAVA5/logout">Logout</a></li>
-								</c:if>
-								<c:if test="${ userLogin == null }">
-									<li><a class="dropdown-item" href="/ASM_JAVA5/login">Login</a></li>
-								</c:if>
-								<c:if test="${ userLogin.admin == 1 }">
-									<li><a class="dropdown-item" href="/ASM_JAVA5/admin">Admin</a></li>
-								</c:if>
+								<sec:authorize access="!isAuthenticated()">
+								 <li><a class="dropdown-item" href="/login">Login</a></li>
+								</sec:authorize>
+								<sec:authorize access="isAuthenticated()">
+								  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+								</sec:authorize>
+								<sec:authorize access="hasAuthority('1') and isAuthenticated()">
+								<li><a class="dropdown-item" href="/admin">Manage Users</a></li>
+								</sec:authorize>
 							</ul>
 							</li>
 						<li class="nav-item"><a class="nav-link text-white"
@@ -111,7 +113,7 @@ html *::-webkit-scrollbar-track {
 								class="fa-solid fa-magnifying-glass fs-4"></i>
 						</a></li>
 						<li class="nav-item"><a class="nav-link text-white"
-							aria-current="page" href="/ASM_JAVA5/user/carts"> <i
+							aria-current="page" href="/user/carts"> <i
 								class="fa-solid fa-cart-shopping fs-4 position-relative"> 
 								<c:if test="${ countCart >0}">								
 								<span
@@ -136,14 +138,14 @@ html *::-webkit-scrollbar-track {
 		<div class="bg-light p-3" style="margin-top: 120px">
 			<nav aria-label="breadcrumb">
 				<ol class="breadcrumb mb-0">
-					<li class="breadcrumb-item"><a href="/ASM_JAVA5/home">Home</a></li>
+					<li class="breadcrumb-item"><a href="/home">Home</a></li>
 					<li class="breadcrumb-item active" aria-current="page">${ product.name }</li>
 				</ol>
 			</nav>
 		</div>
 		<%-- Main --%>
 		<div class="container">
-			<form action="/ASM_JAVA5/user/store" method="post">
+			<form action="/user/store" method="post">
 			<input name="product" type="hidden" value="${ product.id }" />
 			<input name="price" type="hidden" value="${ product.price }" />
 			<input name="quantity" type="hidden" value="${ quantity }" />
@@ -197,7 +199,7 @@ html *::-webkit-scrollbar-track {
 		<%-- Footer --%>
 		<div class="row mt-5 p-4" style="background-color: #0a3d62">
 			<div class="col-4 text-center">
-				<img alt="logo" src="/ASM_JAVA5/public/images/logo-ico-small.svg">
+				<img alt="logo" src="/public/images/logo-ico-small.svg">
 				<p style="color: #dcdde1">FPT Polytechnic Shopping</p>
 			</div>
 			<div class="col-4">

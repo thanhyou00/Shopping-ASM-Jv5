@@ -15,5 +15,7 @@ public interface AccountRepository extends JpaRepository<Account, Integer> {
 
 	@Query(value = "SELECT acc FROM Account acc")
 	public List<Account> getDemo();
+	
+	
 
 }

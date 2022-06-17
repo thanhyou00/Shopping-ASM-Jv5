@@ -3,6 +3,7 @@ package com.fpoly.controllers;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.fpoly.beans.LoginModel;
 import com.fpoly.entities.Account;
 import com.fpoly.repositories.AccountRepository;
+import com.fpoly.services.UserDetailImp;
+import com.fpoly.utils.EncryptUtil;
 
 @Controller
 public class LoginController {
@@ -31,12 +34,16 @@ public class LoginController {
 	@PostMapping("login")
 	public String isLogin(@RequestParam(name = "email", defaultValue = "user") String email,
 			@RequestParam(name = "password", defaultValue = "user") String password,
-			@Validated @ModelAttribute("login") LoginModel model, BindingResult result) {
+			@Validated @ModelAttribute("login") LoginModel model, BindingResult result,
+			@AuthenticationPrincipal UserDetailImp user
+			) {
 		if (result.hasErrors()) {
 			return "commons/login";
 		} else {
-			Account userLogin = this.accRepo.findByEmailEquals(email);
-			if (userLogin != null) {
+			Account userLogin = this.accRepo.findByEmailEquals(user.getUsername());
+			boolean checkPass = EncryptUtil.check(password, userLogin.getPassword());
+			System.out.println("check : "+ userLogin);
+			if (userLogin != null && checkPass) {
 				session.setAttribute("userLogin", userLogin);
 				return "redirect:/home";
 			} else {

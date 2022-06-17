@@ -1,9 +1,11 @@
 
 package com.fpoly.controllers.user;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +21,7 @@ import com.fpoly.entities.Account;
 import com.fpoly.entities.Order;
 import com.fpoly.entities.OrderDetail;
 import com.fpoly.entities.Product;
+import com.fpoly.repositories.AccountRepository;
 import com.fpoly.repositories.OrderDetailRepository;
 import com.fpoly.repositories.OrderRepository;
 import com.fpoly.repositories.ProductRepository;
@@ -33,12 +36,17 @@ public class CartController {
 	@Autowired
 	private ProductRepository productRepo;
 	@Autowired
+	private AccountRepository accRepo;
+	@Autowired
 	private HttpSession session;
+	@Autowired
+	private HttpServletRequest request;
 
 	@GetMapping("/user/carts")
 	public String index(Model model) {
 		int total = 0;
-		Account account = (Account) session.getAttribute("userLogin");
+		Principal principal = request.getUserPrincipal();
+		Account account = this.accRepo.findByEmailEquals(principal.getName());
 		List<HistoryModel> listDetail = this.odetailRepo.getHistory(account.getId());
 		for (HistoryModel orderDetail : listDetail) {
 			total += orderDetail.getProduct().getPrice() * orderDetail.getOrderDetail().getQuantity();
@@ -56,7 +64,8 @@ public class CartController {
 		Product pro = this.productRepo.findById(product).get();
 		Order order = new Order();
 		OrderDetail odetail = new OrderDetail();
-		Account account = (Account) session.getAttribute("userLogin");
+		Principal principal = request.getUserPrincipal();
+		Account account = this.accRepo.findByEmailEquals(principal.getName());
 		LocalDate now = LocalDate.now();
 //		if (pro != null) {
 //			System.out.println("Đã tồn tại : " + product);

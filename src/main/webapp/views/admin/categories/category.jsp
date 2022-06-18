@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +24,7 @@
 				style="background-color: #0a3d62; height: 100vh">
 				<div class="d-flex justify-content-center">
 					<a class="navbar-brand" href="#"> <img alt="logo"
-						src="/public/images/logo-ico.svg" width="100"
-						height="100">
+						src="/public/images/logo-ico.svg" width="100" height="100">
 					</a>
 				</div>
 				<hr>
@@ -97,14 +98,17 @@
 								</li>
 							</ul>
 							<span class="navbar-text" id="dropAccount" role="button"
-								data-bs-toggle="dropdown" aria-expanded="false"> <span>Welcome
-									thanhyou00 </span> <i class="fa-solid fa-user fs-4"></i>
+								data-bs-toggle="dropdown" aria-expanded="false"> <sec:authorize
+									access="isAuthenticated()">
+									<span> Welcome <sec:authentication
+											property="principal.username" />
+									</span>
+								</sec:authorize> <i class="fa-solid fa-user fs-4"></i>
 							</span>
 							<ul class="dropdown-menu" aria-labelledby="dropAccount"
 								style="left: auto; right: 10px">
-								<li><a class="dropdown-item" href="#">Action</a></li>
-								<li><a class="dropdown-item" href="#">Another action</a></li>
-								<li><a class="dropdown-item" href="./admin">Log out</a></li>
+								<li><a class="dropdown-item" href="/home">Home</a></li>
+								<li><a class="dropdown-item" href="/logout">Log out</a></li>
 							</ul>
 						</div>
 					</div>
@@ -135,8 +139,8 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form:form action="/admin/categories/store"
-												method="post" modelAttribute="category">
+											<form:form action="/admin/categories/store" method="post"
+												modelAttribute="category">
 												<div>
 													<label>Name</label>
 													<form:input path="name" class="form-control" />
@@ -166,114 +170,117 @@
 							</div>
 						</div>
 						<div class="col-3 offset-6">
-							<h1>Excel</h1>
+							<a type="button" class="btn btn-primary"
+								href="/admin/category/excel"> <i
+								class="fa-solid fa-file-excel"></i> <span>Export to excel</span>
+							</a>
 						</div>
-
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Name</th>
-									<th>Descriptions</th>
-									<th colspan="2">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${ data.content }" var="cate">
+						<div class="table-responsive mt-5" style="overflow-x: auto">
+							<table class="table table-bordered">
+								<thead>
 									<tr>
-										<td>${ cate.id }</td>
-										<td>${ cate.name }</td>
-										<td>${ cate.descriptions }</td>
-										<td>
-											<button class="btn btn-primary" data-bs-toggle="modal"
-												data-bs-target="#modalUpdate_${cate.id }">
-												<i class="fa-solid fa-pen-to-square"></i>
-											</button> <!-- Modal update -->
-											<div class="modal fade" id="modalUpdate_${cate.id}"
-												data-bs-backdrop="static" data-bs-keyboard="false"
-												tabindex="-1" aria-labelledby="staticBackdropLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header bg-info">
-															<h5 class="modal-title text-white"
-																id="staticBackdropLabel">Update a category</h5>
-															<button type="button" class="btn" data-bs-dismiss="modal"
-																aria-label="Close">
-																<i class="fa-solid fa-xmark fs-5 text-white"></i>
-															</button>
-														</div>
-														<div class="modal-body">
-															<form:form
-																action="/admin/categories/update/${ cate.id }"
-																method="post" modelAttribute="category">
-																<div>
-																	<label>Name</label>
-																	<form:input path="name" class="form-control"
-																		value="${ cate.name }" />
-																</div>
-																<div>
-																	<label>Descriptions</label>
-																	<form:input path="descriptions" class="form-control"
-																		value="${ cate.descriptions }" />
-																</div>
-																<button class="btn btn-primary w-100 mt-3"
-																	id="liveToastBtn">Update</button>
-																<div class="position-fixed top-0 end-0 p-5"
-																	style="z-index: 11">
-																	<div style="background-color: #2ecc71" id="liveToast"
-																		class="toast align-items-center text-white border-0"
-																		role="alert" aria-live="assertive" aria-atomic="true">
-																		<div class="d-flex">
-																			<div class="toast-body">Successful !</div>
-																			<button type="button"
-																				class="btn-close btn-close-white me-2 m-auto"
-																				data-bs-dismiss="toast" aria-label="Close"></button>
+										<th>ID</th>
+										<th>Name</th>
+										<th>Descriptions</th>
+										<th colspan="2">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${ data.content }" var="cate">
+										<tr>
+											<td>${ cate.id }</td>
+											<td>${ cate.name }</td>
+											<td>${ cate.descriptions }</td>
+											<td>
+												<button class="btn btn-primary" data-bs-toggle="modal"
+													data-bs-target="#modalUpdate_${cate.id }">
+													<i class="fa-solid fa-pen-to-square"></i>
+												</button> <!-- Modal update -->
+												<div class="modal fade" id="modalUpdate_${cate.id}"
+													data-bs-backdrop="static" data-bs-keyboard="false"
+													tabindex="-1" aria-labelledby="staticBackdropLabel"
+													aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header bg-info">
+																<h5 class="modal-title text-white"
+																	id="staticBackdropLabel">Update a category</h5>
+																<button type="button" class="btn"
+																	data-bs-dismiss="modal" aria-label="Close">
+																	<i class="fa-solid fa-xmark fs-5 text-white"></i>
+																</button>
+															</div>
+															<div class="modal-body">
+																<form:form
+																	action="/admin/categories/update/${ cate.id }"
+																	method="post" modelAttribute="category">
+																	<div>
+																		<label>Name</label>
+																		<form:input path="name" class="form-control"
+																			value="${ cate.name }" />
+																	</div>
+																	<div>
+																		<label>Descriptions</label>
+																		<form:input path="descriptions" class="form-control"
+																			value="${ cate.descriptions }" />
+																	</div>
+																	<button class="btn btn-primary w-100 mt-3"
+																		id="liveToastBtn">Update</button>
+																	<div class="position-fixed top-0 end-0 p-5"
+																		style="z-index: 11">
+																		<div style="background-color: #2ecc71" id="liveToast"
+																			class="toast align-items-center text-white border-0"
+																			role="alert" aria-live="assertive" aria-atomic="true">
+																			<div class="d-flex">
+																				<div class="toast-body">Successful !</div>
+																				<button type="button"
+																					class="btn-close btn-close-white me-2 m-auto"
+																					data-bs-dismiss="toast" aria-label="Close"></button>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</form:form>
+																</form:form>
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
-										</td>
-										<td class="text-center">
-											<button class="btn btn-danger" data-bs-toggle="modal"
-												data-bs-target="#modalDelte_${cate.id }">
-												<i class="fa-solid fa-trash-can"></i>
-											</button> <!-- Modal delete -->
-											<div class="modal fade" id="modalDelte_${cate.id}"
-												data-bs-backdrop="static" data-bs-keyboard="false"
-												tabindex="-1" aria-labelledby="staticBackdropLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header bg-danger">
-															<h5 class="modal-title text-white"
-																id="staticBackdropLabel">Delete a category !</h5>
-															<button type="button" class="btn" data-bs-dismiss="modal"
-																aria-label="Close">
-																<i class="fa-solid fa-xmark fs-5 text-white"></i>
-															</button>
-														</div>
-														<div class="modal-body" style="background-color: #fff2df">
-															<p>Warning : You are trying a category. This category
-																will be permanently deleted !</p>
-															<a role="button"
-																href="/admin/categories/delete/${ cate.id }"
-																class="btn btn-danger w-100 "> Delete </a>
+											</td>
+											<td class="text-center">
+												<button class="btn btn-danger" data-bs-toggle="modal"
+													data-bs-target="#modalDelte_${cate.id }">
+													<i class="fa-solid fa-trash-can"></i>
+												</button> <!-- Modal delete -->
+												<div class="modal fade" id="modalDelte_${cate.id}"
+													data-bs-backdrop="static" data-bs-keyboard="false"
+													tabindex="-1" aria-labelledby="staticBackdropLabel"
+													aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header bg-danger">
+																<h5 class="modal-title text-white"
+																	id="staticBackdropLabel">Delete a category !</h5>
+																<button type="button" class="btn"
+																	data-bs-dismiss="modal" aria-label="Close">
+																	<i class="fa-solid fa-xmark fs-5 text-white"></i>
+																</button>
+															</div>
+															<div class="modal-body" style="background-color: #fff2df">
+																<p>Warning : You are trying a category. This
+																	category will be permanently deleted !</p>
+																<a role="button"
+																	href="/admin/categories/delete/${ cate.id }"
+																	class="btn btn-danger w-100 "> Delete </a>
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
-										</td>
+											</td>
 
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
 
 
 						<div class="row">

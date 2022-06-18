@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,8 +24,7 @@
 				style="background-color: #0a3d62; height: 100vh">
 				<div class="d-flex justify-content-center">
 					<a class="navbar-brand" href="#"> <img alt="logo"
-						src="/public/images/logo-ico.svg" width="100"
-						height="100">
+						src="/public/images/logo-ico.svg" width="100" height="100">
 					</a>
 				</div>
 				<hr>
@@ -96,8 +97,19 @@
 								<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
 								</li>
 							</ul>
-							<span class="navbar-text"> Navbar text with an inline
-								element </span>
+							<span class="navbar-text" id="dropAccount" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false"> <sec:authorize
+									access="isAuthenticated()">
+									<span> Welcome <sec:authentication
+											property="principal.username" />
+									</span>
+								</sec:authorize> <i class="fa-solid fa-user fs-4"></i>
+							</span>
+							<ul class="dropdown-menu" aria-labelledby="dropAccount"
+								style="left: auto; right: 10px">
+								<li><a class="dropdown-item" href="/home">Home</a></li>
+								<li><a class="dropdown-item" href="/logout">Log out</a></li>
+							</ul>
 						</div>
 					</div>
 				</nav>
@@ -127,8 +139,8 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form:form action="/admin/orders/store"
-												method="post" modelAttribute="order">
+											<form:form action="/admin/orders/store" method="post"
+												modelAttribute="order">
 												<div>
 													<label>Account ID</label>
 													<form:select path="account" class="form-select">
@@ -168,130 +180,130 @@
 							</div>
 						</div>
 						<div class="col-3 offset-6">
-							<h1>Excel</h1>
+							<a type="button" class="btn btn-primary"
+								href="/admin/order/excel"> <i class="fa-solid fa-file-excel"></i>
+								<span>Export to excel</span>
+							</a>
 						</div>
-
-						<table class="table table-bordered">
-							<thead>
-								<tr>
-									<th>ID</th>
-									<th>Account ID</th>
-									<th>Shipping address</th>
-									<th>Order date</th>
-									<th>Order status</th>
-									<th colspan="2">Action</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${ data.content }" var="od">
+						<div class="table-responsive mt-5" style="overflow-x: auto">
+							<table class="table table-bordered">
+								<thead>
 									<tr>
-										<td>${ od.id }</td>
-										<td>${ od.account.id }</td>
-										<td>${ od.shippingAddress }</td>
-										<td>${ od.orderDate }</td>
-										<td>${ od.orderStatus }</td>
-										<td class="text-center">
-											<button class="btn btn-primary" data-bs-toggle="modal"
-												data-bs-target="#modalUpdate_${od.id }">
-												<i class="fa-solid fa-pen-to-square"></i>
-											</button> <!-- Modal update -->
-											<div class="modal fade" id="modalUpdate_${od.id}"
-												data-bs-backdrop="static" data-bs-keyboard="false"
-												tabindex="-1" aria-labelledby="staticBackdropLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header bg-info">
-															<h5 class="modal-title text-white"
-																id="staticBackdropLabel">Update a order</h5>
-															<button type="button" class="btn" data-bs-dismiss="modal"
-																aria-label="Close">
-																<i class="fa-solid fa-xmark fs-5 text-white"></i>
-															</button>
-														</div>
-														<div class="modal-body">
-															<form:form
-																action="/admin/orders/update/${ od.id }"
-																method="post" modelAttribute="order">
-																<div style="text-align: left;">
-																	<label>Account ID</label>
-																	<form:select path="account" class="form-select">
-																		<c:forEach items="${ listAcc }" var="acc">
-																<form:option value="${ acc.id }"
-																selected="${ acc.id == od.account.id ? 'true' : 'false' }"
-																>
+										<th>ID</th>
+										<th>Account ID</th>
+										<th>Shipping address</th>
+										<th>Order date</th>
+										<th>Order status</th>
+										<th colspan="2">Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<c:forEach items="${ data.content }" var="od">
+										<tr>
+											<td>${ od.id }</td>
+											<td>${ od.account.id }</td>
+											<td>${ od.shippingAddress }</td>
+											<td>${ od.orderDate }</td>
+											<td>${ od.orderStatus }</td>
+											<td class="text-center">
+												<button class="btn btn-primary" data-bs-toggle="modal"
+													data-bs-target="#modalUpdate_${od.id }">
+													<i class="fa-solid fa-pen-to-square"></i>
+												</button> <!-- Modal update -->
+												<div class="modal fade" id="modalUpdate_${od.id}"
+													data-bs-backdrop="static" data-bs-keyboard="false"
+													tabindex="-1" aria-labelledby="staticBackdropLabel"
+													aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header bg-info">
+																<h5 class="modal-title text-white"
+																	id="staticBackdropLabel">Update a order</h5>
+																<button type="button" class="btn"
+																	data-bs-dismiss="modal" aria-label="Close">
+																	<i class="fa-solid fa-xmark fs-5 text-white"></i>
+																</button>
+															</div>
+															<div class="modal-body">
+																<form:form action="/admin/orders/update/${ od.id }"
+																	method="post" modelAttribute="order">
+																	<div style="text-align: left;">
+																		<label>Account ID</label>
+																		<form:select path="account" class="form-select">
+																			<c:forEach items="${ listAcc }" var="acc">
+																				<form:option value="${ acc.id }"
+																					selected="${ acc.id == od.account.id ? 'true' : 'false' }">
 																		${ acc.id }
 																	</form:option>
-																		</c:forEach>
-																	</form:select>
-																</div>
-																<div style="text-align: left;">
-																	<label>Shipping address</label>
-																	<form:input path="shippingAddress" class="form-control"
-																		value="${ od.shippingAddress }" />
-																</div>
-																<div style="text-align: left;">
-																	<label>Order status</label>
-																	<form:input path="orderStatus" class="form-control"
-																		value="${ od.orderStatus }" />
-																</div>
-																<button class="btn btn-primary w-100 mt-3"
-																	id="liveToastBtn">Update</button>
-																<div class="position-fixed top-0 end-0 p-5"
-																	style="z-index: 11">
-																	<div style="background-color: #2ecc71" id="liveToast"
-																		class="toast align-items-center text-white border-0"
-																		role="alert" aria-live="assertive" aria-atomic="true">
-																		<div class="d-flex">
-																			<div class="toast-body">Successful !</div>
-																			<button type="button"
-																				class="btn-close btn-close-white me-2 m-auto"
-																				data-bs-dismiss="toast" aria-label="Close"></button>
+																			</c:forEach>
+																		</form:select>
+																	</div>
+																	<div style="text-align: left;">
+																		<label>Shipping address</label>
+																		<form:input path="shippingAddress"
+																			class="form-control" value="${ od.shippingAddress }" />
+																	</div>
+																	<div style="text-align: left;">
+																		<label>Order status</label>
+																		<form:input path="orderStatus" class="form-control"
+																			value="${ od.orderStatus }" />
+																	</div>
+																	<button class="btn btn-primary w-100 mt-3"
+																		id="liveToastBtn">Update</button>
+																	<div class="position-fixed top-0 end-0 p-5"
+																		style="z-index: 11">
+																		<div style="background-color: #2ecc71" id="liveToast"
+																			class="toast align-items-center text-white border-0"
+																			role="alert" aria-live="assertive" aria-atomic="true">
+																			<div class="d-flex">
+																				<div class="toast-body">Successful !</div>
+																				<button type="button"
+																					class="btn-close btn-close-white me-2 m-auto"
+																					data-bs-dismiss="toast" aria-label="Close"></button>
+																			</div>
 																		</div>
 																	</div>
-																</div>
-															</form:form>
+																</form:form>
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
-										</td>
-										<td class="text-center">
-											<button class="btn btn-danger" data-bs-toggle="modal"
-												data-bs-target="#modalDelte_${od.id }">
-												<i class="fa-solid fa-trash-can"></i>
-											</button> <!-- Modal delete -->
-											<div class="modal fade" id="modalDelte_${od.id}"
-												data-bs-backdrop="static" data-bs-keyboard="false"
-												tabindex="-1" aria-labelledby="staticBackdropLabel"
-												aria-hidden="true">
-												<div class="modal-dialog">
-													<div class="modal-content">
-														<div class="modal-header bg-danger">
-															<h5 class="modal-title text-white"
-																id="staticBackdropLabel">Delete a order !</h5>
-															<button type="button" class="btn" data-bs-dismiss="modal"
-																aria-label="Close">
-																<i class="fa-solid fa-xmark fs-5 text-white"></i>
-															</button>
-														</div>
-														<div class="modal-body" style="background-color: #fff2df">
-															<p>Warning : You are trying a account. This order
-																will be permanently deleted !</p>
-															<a role="button"
-																href="/admin/orders/delete/${ od.id }"
-																class="btn btn-danger w-100 "> Delete </a>
+											</td>
+											<td class="text-center">
+												<button class="btn btn-danger" data-bs-toggle="modal"
+													data-bs-target="#modalDelte_${od.id }">
+													<i class="fa-solid fa-trash-can"></i>
+												</button> <!-- Modal delete -->
+												<div class="modal fade" id="modalDelte_${od.id}"
+													data-bs-backdrop="static" data-bs-keyboard="false"
+													tabindex="-1" aria-labelledby="staticBackdropLabel"
+													aria-hidden="true">
+													<div class="modal-dialog">
+														<div class="modal-content">
+															<div class="modal-header bg-danger">
+																<h5 class="modal-title text-white"
+																	id="staticBackdropLabel">Delete a order !</h5>
+																<button type="button" class="btn"
+																	data-bs-dismiss="modal" aria-label="Close">
+																	<i class="fa-solid fa-xmark fs-5 text-white"></i>
+																</button>
+															</div>
+															<div class="modal-body" style="background-color: #fff2df">
+																<p>Warning : You are trying a account. This order
+																	will be permanently deleted !</p>
+																<a role="button" href="/admin/orders/delete/${ od.id }"
+																	class="btn btn-danger w-100 "> Delete </a>
+															</div>
 														</div>
 													</div>
 												</div>
-											</div>
-										</td>
+											</td>
 
-									</tr>
-								</c:forEach>
-							</tbody>
-						</table>
-
+										</tr>
+									</c:forEach>
+								</tbody>
+							</table>
+						</div>
 
 
 						<div class="row">

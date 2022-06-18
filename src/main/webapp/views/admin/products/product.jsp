@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -33,8 +35,7 @@
 				style="background-color: #0a3d62; height: 100vh">
 				<div class="d-flex justify-content-center">
 					<a class="navbar-brand" href="#"> <img alt="logo"
-						src="/public/images/logo-ico.svg" width="100"
-						height="100">
+						src="/public/images/logo-ico.svg" width="100" height="100">
 					</a>
 				</div>
 				<hr>
@@ -107,8 +108,20 @@
 								<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
 								</li>
 							</ul>
-							<span class="navbar-text"> Navbar text with an inline
-								element </span>
+							<span class="navbar-text" id="dropAccount" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false"> 
+									<sec:authorize access="isAuthenticated()">
+									<span>
+    									Welcome <sec:authentication property="principal.username" />
+									</span>
+									</sec:authorize>
+							 <i class="fa-solid fa-user fs-4"></i>
+							</span>
+							<ul class="dropdown-menu" aria-labelledby="dropAccount"
+								style="left: auto; right: 10px">
+								<li><a class="dropdown-item" href="/home">Home</a></li>
+								<li><a class="dropdown-item" href="/logout">Log out</a></li>
+							</ul>
 						</div>
 					</div>
 				</nav>
@@ -138,8 +151,8 @@
 												data-bs-dismiss="modal" aria-label="Close"></button>
 										</div>
 										<div class="modal-body">
-											<form:form action="/admin/products/store"
-												method="post" modelAttribute="product">
+											<form:form action="/admin/products/store" method="post"
+												modelAttribute="product">
 												<div>
 													<label>Name</label>
 													<form:input path="name" class="form-control" />
@@ -199,10 +212,13 @@
 							</div>
 						</div>
 						<div class="col-3 offset-6">
-							<h1>Excel</h1>
+							<a type="button" class="btn btn-primary"
+								href="/admin/product/excel"> <i
+								class="fa-solid fa-file-excel"></i> <span>Export to excel</span>
+							</a>
 						</div>
-						<div class="table-responsive" style="overflow-x: auto">
-							<table class="table  table-bordered">
+						<div class="table-responsive mt-5" style="overflow-x: auto">
+							<table class="table table-bordered">
 								<thead>
 									<tr>
 										<th>ID</th>
@@ -250,8 +266,7 @@
 																</button>
 															</div>
 															<div class="modal-body">
-																<form:form
-																	action="/admin/products/update/${ pro.id }"
+																<form:form action="/admin/products/update/${ pro.id }"
 																	method="post" modelAttribute="product">
 																	<div>
 																		<label>Name</label>

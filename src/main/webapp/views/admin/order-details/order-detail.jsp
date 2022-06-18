@@ -2,6 +2,8 @@
 	pageEncoding="UTF-8"%>
 <%@taglib uri="http://java.sun.com/jstl/core_rt" prefix="c"%>
 <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+<%@ taglib prefix="sec"
+	uri="http://www.springframework.org/security/tags"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -106,8 +108,20 @@
 								<li class="nav-item"><a class="nav-link" href="#">Pricing</a>
 								</li>
 							</ul>
-							<span class="navbar-text"> Navbar text with an inline
-								element </span>
+							<span class="navbar-text" id="dropAccount" role="button"
+								data-bs-toggle="dropdown" aria-expanded="false"> 
+									<sec:authorize access="isAuthenticated()">
+									<span>
+    									Welcome <sec:authentication property="principal.username" />
+									</span>
+									</sec:authorize>
+							 <i class="fa-solid fa-user fs-4"></i>
+							</span>
+							<ul class="dropdown-menu" aria-labelledby="dropAccount"
+								style="left: auto; right: 10px">
+								<li><a class="dropdown-item" href="/home">Home</a></li>
+								<li><a class="dropdown-item" href="/logout">Log out</a></li>
+							</ul>
 						</div>
 					</div>
 				</nav>
@@ -189,10 +203,13 @@
 							</div>
 						</div>
 						<div class="col-3 offset-6">
-							<h1>Excel</h1>
+							<a type="button" class="btn btn-primary" href="/admin/order-detail/excel">
+							<i class="fa-solid fa-file-excel"></i>
+							<span>Export to excel</span>
+							</a>
 						</div>
-						<div class="table-responsive" style="overflow-x: auto">
-							<table class="table  table-bordered">
+						<div class="table-responsive mt-5" style="overflow-x: auto">
+							<table class="table table-bordered">
 								<thead>
 									<tr>
 										<th>ID</th>
@@ -235,7 +252,10 @@
 																<c:if test="${ odetail.order.orderStatus == 1}">
 																	<div class="col-3">
 																		<a type="button" class="btn btn-primary"
-																			href="/admin/pdf/${ odetail.order.id }">Export to PDF</a>
+																			href="/admin/pdf/${ odetail.order.id }">
+																			<i class="fa-solid fa-file-pdf"></i>
+																			<span>Export to PDF</span>
+																			</a>
 																	</div>
 																</c:if>
 																<div class="col-4">

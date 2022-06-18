@@ -226,12 +226,18 @@
 																	data-bs-dismiss="modal" aria-label="Close"></button>
 															</div>
 															<div class="modal-body row p-5">
-																<div class="col-12">
+																<div class="col-9">
 																	<img alt="${ odetail.product.name }"
 																		src="${ odetail.product.image }" width="100"
 																		height="100">
 																	<p>${ odetail.product.name }</p>
 																</div>
+																<c:if test="${ odetail.order.orderStatus == 1}">
+																	<div class="col-3">
+																		<a type="button" class="btn btn-primary"
+																			href="/admin/pdf/${ odetail.order.id }">Export to PDF</a>
+																	</div>
+																</c:if>
 																<div class="col-4">
 																	<h5>Tên khách hàng</h5>
 																	<p>${ odetail.order.account.fullname }</p>
